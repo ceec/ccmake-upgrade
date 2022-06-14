@@ -19,13 +19,33 @@ ccmakesthings
 	padding-top: 10px;
 	padding-bottom: 5px;
 }
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: auto;
+    grid-gap: 1rem;
+}
+
+.card {
+    background-color: lightgray;
+    border: 2px solid #e7e7e7;
+    border-radius: 4px; 
+    padding: .5rem;
+}
+
 </style>
 	<div class="container">
 <h2>{{$set->name}}</h2>
-
-@foreach ($cards as $card)
-    {{$card->name}}</a><br>
-@endforeach
+<div class="cards">
+    @foreach ($cards as $card)
+        <div class="card">
+            <a href="">{{$card->name}}</a><br>
+            <img src=""><br>
+            {{$card->rarity_id}}
+        </div>
+    @endforeach
+</div>
 	</div>
 
 @endsection
