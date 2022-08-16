@@ -10,3 +10,9 @@
     - Created sets
     - Created cards
     - Sets are listed and can click to show cards in that set
+
+    ## 2022-08-06
+    - working on pokemoncards and adding user to set
+    - got stuck cause php wasnt installed?? how the hell was i doing php artisan make:model Flight --migration
+
+ before????

@@ -8,7 +8,7 @@ use App\Models\Movie;
 use App\Models\Project;
 use App\Models\Projectstep;
 use App\Models\Projectsteptag;
-use App\Models\Set;
+use App\Models\Pokemonset;
 use App\Models\Tag;
 
 
@@ -102,7 +102,7 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function pokemoncards(){
-        $sets = Set::orderBy('id','asc')->get();
+        $sets = Pokemonset::orderBy('id','asc')->get();
 
         return  view('pages.pokemoncards')
         ->with('sets',$sets);

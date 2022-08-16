@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Card;
-use App\Models\Set;
+use Illuminate\Support\Facades\DB;
+use App\Models\Pokemoncard;
+use App\Models\Pokemonset;
+use App\Models\Pokemonusercard;
 
 class PokemonController extends Controller
 {
@@ -16,10 +18,14 @@ class PokemonController extends Controller
      */
     public function set($set){
         // get info on the set
-        $setinfo = Set::where('url','=',$set)->first();
+        $setinfo = Pokemonset::where('url','=',$set)->first();
 
-        // get all the cards in that set
-        $cards = Card::where('set_id','=',$setinfo->id)->get();
+        // get all the cards in that set, add on if I have the card or not
+        // TODO: If i have multiple it displays it twice
+        $cards = DB::table('pokemoncards')
+        ->where('set_id','=',$setinfo->id)
+        ->leftJoin('pokemonusercards', 'pokemoncards.id', '=', 'pokemonusercards.pokemoncard_id')
+        ->get();
 
         return  view('pages.pokemonset')
         ->with('set',$setinfo)
