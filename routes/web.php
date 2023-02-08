@@ -29,12 +29,13 @@ Route::get('/tool/{tool}','PageController@tool');
 //specific pages
 Route::get('/movies','App\Http\Controllers\PageController@movies');
 Route::get('/pokemon','App\Http\Controllers\PageController@pokemoncards');
+Route::get('/music','App\Http\Controllers\PageController@music');
 
 //into the pokemoncard database
 Route::get('/pokemon/set/{set}','App\Http\Controllers\PokemonController@set');
 Route::get('/pokemon/card/{card}','App\Http\Controllers\PokemonController@card');
 
-
+// this is old
 Route::get('/chelsea','PageController@chelsea');
 Route::get('/manga','PageController@manga');
 Route::get('/counties','PageController@counties');
@@ -44,4 +45,3 @@ Route::get('/wordcount','PageController@wordcount');
 Route::get('/resources','PageController@resources');
 Route::get('/bookshelf','PageController@bookshelf');
 Route::get('/time','PageController@time');
-Route::get('/music','PageController@music');

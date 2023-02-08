@@ -9,6 +9,7 @@ use App\Models\Project;
 use App\Models\Projectstep;
 use App\Models\Projectsteptag;
 use App\Models\Pokemonset;
+use App\Models\Song;
 use App\Models\Tag;
 
 
@@ -107,5 +108,17 @@ class PageController extends Controller
         return  view('pages.pokemoncards')
         ->with('sets',$sets);
     }  
+
+    /**
+     * Music
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function music(){
+        $songs = Song::all();
+
+        return  view('pages.music')
+        ->with('songs',$songs);
+    } 
 
 }
