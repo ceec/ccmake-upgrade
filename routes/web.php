@@ -27,9 +27,17 @@ Route::get('/tool/{tool}','PageController@tool');
 
 
 //specific pages
+Route::get('/bookshelf','App\Http\Controllers\PageController@bookshelf');
+Route::get('/counties','App\Http\Controllers\PageController@counties');
+Route::get('/chelsea','App\Http\Controllers\PageController@chelsea');
+Route::get('/manga','App\Http\Controllers\PageController@manga');
 Route::get('/movies','App\Http\Controllers\PageController@movies');
+Route::get('/projects','App\Http\Controllers\PageController@projects');
 Route::get('/pokemon','App\Http\Controllers\PageController@pokemoncards');
-
+Route::get('/resources','App\Http\Controllers\PageController@resources');
+// this is a different database for some reason? lets just combine it
+Route::get('/time','App\Http\Controllers\PageController@time');
+Route::get('/wordcount','App\Http\Controllers\PageController@wordcount');
 
 //into the pokemoncard database
 Route::get('/pokemon/set/{set}','App\Http\Controllers\PokemonController@set');
@@ -38,14 +46,3 @@ Route::get('/pokemon/card/{card}','App\Http\Controllers\PokemonController@card')
 // music
 Route::get('/music','App\Http\Controllers\MusicController@music');
 Route::get('/music/album/{album}','App\Http\Controllers\MusicController@album');
-
-// this is old
-Route::get('/chelsea','PageController@chelsea');
-Route::get('/manga','PageController@manga');
-Route::get('/counties','PageController@counties');
-Route::get('/projects','PageController@projects');
-
-Route::get('/wordcount','PageController@wordcount');
-Route::get('/resources','PageController@resources');
-Route::get('/bookshelf','PageController@bookshelf');
-Route::get('/time','PageController@time');
