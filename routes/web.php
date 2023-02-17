@@ -46,3 +46,12 @@ Route::get('/pokemon/card/{card}','App\Http\Controllers\PokemonController@card')
 // music
 Route::get('/music','App\Http\Controllers\MusicController@music');
 Route::get('/music/album/{album}','App\Http\Controllers\MusicController@album');
+
+//rocks - okay this is in a different db too? Or i dont have it locally
+Route::get('/rocks', 'App\Http\Controllers\PageController@rocks');
+Route::get('rocks/{mineral_name}', 'App\Http\Controllers\PageController@showMinerals');
+
+// Books
+Route::get('/books','App\Http\Controllers\BookController@books');
+Route::get('/books/group/{group}','App\Http\Controllers\BookController@groups');
+Route::get('/books/type/{type}','App\Http\Controllers\BookController@types');

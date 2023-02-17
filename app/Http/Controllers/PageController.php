@@ -8,6 +8,8 @@ use App\Models\Album;
 use App\Models\Book;
 use App\Models\Category;
 use App\Models\Group;
+use App\Models\Item;
+use App\Models\Mineral;
 use App\Models\Movie;
 use App\Models\Pokemonset;
 use App\Models\Project;
@@ -245,4 +247,48 @@ class PageController extends Controller
         return  view('pages.time');
     }  
     
+    /**
+     * Rocks
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function rocks()
+    {
+        //get all the minerals
+        $minerals = Mineral::orderBy('name','asc')->paginate(50);
+
+        //get a picture
+        foreach ($minerals as $min) {
+            $image = Item::where('mineral_id','=',$min->id)->pluck('image')->toArray();
+            if (isset($image[0])) {
+                $test = $image[0];
+            } else {
+                $test = 'example.jpg';
+            }
+            
+            $min->image = $test;
+        }   
+
+        return view('pages.minerals')
+        ->with('minerals',$minerals);
+    }
+
+    /**
+     * show each rock
+     *
+     * @return \Illuminate\Http\Response
+     */    
+    public function showMinerals($mineral_name)
+    {
+
+        //get the mineral id
+        $m = Mineral::where('name','=',$mineral_name)->first();
+
+        //get all the items
+        $items = Item::where('mineral_id','=',$m->id)->paginate(18);
+
+        return view('pages.rocks')
+        ->with('items',$items);
+    }
+
 }
