@@ -29,11 +29,15 @@ Route::get('/tool/{tool}','PageController@tool');
 //specific pages
 Route::get('/movies','App\Http\Controllers\PageController@movies');
 Route::get('/pokemon','App\Http\Controllers\PageController@pokemoncards');
-Route::get('/music','App\Http\Controllers\PageController@music');
+
 
 //into the pokemoncard database
 Route::get('/pokemon/set/{set}','App\Http\Controllers\PokemonController@set');
 Route::get('/pokemon/card/{card}','App\Http\Controllers\PokemonController@card');
+
+// music
+Route::get('/music','App\Http\Controllers\MusicController@music');
+Route::get('/music/album/{album}','App\Http\Controllers\MusicController@album');
 
 // this is old
 Route::get('/chelsea','PageController@chelsea');
