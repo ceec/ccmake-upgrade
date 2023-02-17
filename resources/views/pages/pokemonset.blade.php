@@ -40,13 +40,16 @@ ccmakesthings
     height:auto;
 }
 
+.set-number {
+}
+
 </style>
 	<div class="container">
 <h2><a href="/pokemon">Sets</a> > {{$set->name}}</h2>
 <div class="cards">
     @foreach ($cards as $card)
         <div>
-            <a href="">{{$card->name}}</a> {{$card->set_number}}<br>
+            <span class="set-number">{{$card->set_number}}</span> <a href="/pokemon/{{$card->pokemon_id}}">{{$card->name}}</a><br>
             @if ($card->user_id)
             <img class="card-image" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.jpg"><br>
             @else
