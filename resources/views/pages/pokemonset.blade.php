@@ -52,6 +52,10 @@ ccmakesthings
             <span class="set-number">{{$card->set_number}}</span> <a href="/pokemon/{{$card->pokemon_id}}">{{$card->name}}</a><br>
             @if ($card->user_id)
             <img class="card-image" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.jpg"><br>
+            @if ($card->price > 0.00)
+                ${{$card->price}}
+            @endif
+            {{$card->source}}
             @else
             <img class="card-image dont-have" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.jpg"><br>
             @endif
