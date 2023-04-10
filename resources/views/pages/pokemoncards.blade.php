@@ -26,6 +26,10 @@ ccmakesthings
 @foreach ($sets as $set)
     <a href="/pokemon/set/{{$set->url}}">{{$set->name}}</a><br>
 @endforeach
-	</div>
+<h2>need</h2>
+	@foreach ($sets as $set)
+    <a href="/pokemon/need/{{$set->url}}">{{$set->name}}</a><br>
+	@endforeach
+</div>
 
 @endsection

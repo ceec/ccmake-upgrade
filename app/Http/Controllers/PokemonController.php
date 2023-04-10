@@ -34,4 +34,19 @@ class PokemonController extends Controller
 
     //card
     // display a specific card
+
+
+
+    // need - cards I need
+    // only going to do wotc first
+    public function need($set) {
+        // ok figuring out cards I need
+        // have list of all the cards in the set, then have my list of cards in the set, so i can do one
+        // of those sql things thats like exclude
+        // so want all of pokmeoncards where set = set
+        $set = Pokemonset::where('url','=',$set)->first();
+
+        return view('pages.pokemonneed')
+        ->with('set',$set);
+    }
 }

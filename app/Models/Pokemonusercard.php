@@ -3,9 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
 
 class Pokemonusercard extends Model
 {
     use HasFactory;
+
+    // get all the user cards in the set
+    public function usercards(): HasMany {
+        return $this->hasMany(Pokemonusercard::class);
+    }   
+
 }

@@ -40,8 +40,10 @@ Route::get('/time','App\Http\Controllers\PageController@time');
 Route::get('/wordcount','App\Http\Controllers\PageController@wordcount');
 
 //into the pokemoncard database
-Route::get('/pokemon/set/{set}','App\Http\Controllers\PokemonController@set');
 Route::get('/pokemon/card/{card}','App\Http\Controllers\PokemonController@card');
+Route::get('/pokemon/need/{set}','App\Http\Controllers\PokemonController@need');
+Route::get('/pokemon/set/{set}','App\Http\Controllers\PokemonController@set');
+
 
 // music
 Route::get('/music','App\Http\Controllers\MusicController@music');
@@ -55,3 +57,4 @@ Route::get('rocks/{mineral_name}', 'App\Http\Controllers\PageController@showMine
 Route::get('/books','App\Http\Controllers\BookController@books');
 Route::get('/books/group/{group}','App\Http\Controllers\BookController@groups');
 Route::get('/books/type/{type}','App\Http\Controllers\BookController@types');
+
