@@ -109,7 +109,7 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function pokemoncards(){
-        $sets = Pokemonset::orderBy('id','asc')->get();
+        $sets = Pokemonset::where('generation_id','=',0)->orderBy('id','asc')->get();
 
         return  view('pages.pokemoncards')
         ->with('sets',$sets);
