@@ -109,10 +109,13 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function pokemoncards(){
-        $sets = Pokemonset::where('generation_id','=',0)->orderBy('id','asc')->get();
+        $vintage = Pokemonset::where('generation_id','=',0)->orderBy('id','asc')->get();
+
+        $modern = Pokemonset::where('generation_id','=',8)->orWhere('generation_id','=',9)->orderBy('release_date','asc')->get();
 
         return  view('pages.pokemoncards')
-        ->with('sets',$sets);
+            ->with('vintage',$vintage)
+            ->with('modern',$modern);
     }  
 
     ///travel

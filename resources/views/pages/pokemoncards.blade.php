@@ -22,13 +22,16 @@ ccmakesthings
 </style>
 	<div class="container">
 <h2>pokemans</h2>
-
-@foreach ($sets as $set)
-    <a href="/pokemon/set/{{$set->url}}">{{$set->name}}</a><br>
+@foreach ($vintage as $set)
+    <img src="/images/pokemon/seticons/{{$set->id}}.png" height="15px"> <a href="/pokemon/set/{{$set->url}}">{{$set->name}}</a><br>
+@endforeach
+<br>
+@foreach ($modern as $set)
+    <img src="/images/pokemon/seticons/{{$set->id}}.png" height="15px"> <a href="/pokemon/set/{{$set->url}}">{{$set->name}}</a><br>
 @endforeach
 <h2>need</h2>
-	@foreach ($sets as $set)
-    <a href="/pokemon/need/{{$set->url}}">{{$set->name}}</a><br>
+	@foreach ($vintage as $set)
+    <img src="/images/pokemon/seticons/{{$set->id}}.png" height="15px"> <a href="/pokemon/need/{{$set->url}}">{{$set->name}}</a><br>
 	@endforeach
 </div>
 
