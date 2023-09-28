@@ -28,4 +28,33 @@ class Pokemonset extends Model
 
         return $cards;
     }
+
+    public function totalcards() {
+        $cards = Pokemoncard::where('set_id','=',$this->id)->get();
+        $total = $cards->count();
+
+        return $total;
+    }
+
+    public function totalhavecards() {
+        $cards = DB::table('pokemoncards')
+        ->where('set_id','=',$this->id)
+        ->whereIn('id',DB::table('pokemoncards')->where('set_id','=',$this->id)->join('pokemonusercards', 'pokemoncards.id', '=', 'pokemonusercards.pokemoncard_id')->pluck('pokemoncards.id'))
+        ->get();       
+        
+        $total = $cards->count();
+
+        return $total;
+    } 
+    
+    public function totalneedcards() {
+        $cards = DB::table('pokemoncards')
+        ->where('set_id','=',$this->id)
+        ->whereNotIn('id',DB::table('pokemoncards')->where('set_id','=',$this->id)->join('pokemonusercards', 'pokemoncards.id', '=', 'pokemonusercards.pokemoncard_id')->pluck('pokemoncards.id'))
+        ->get();       
+        
+        $total = $cards->count();
+
+        return $total;
+    }      
 }
