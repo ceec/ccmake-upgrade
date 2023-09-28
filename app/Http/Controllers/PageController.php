@@ -109,7 +109,7 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function pokemoncards(){
-        $vintage = Pokemonset::where('generation_id','=',0)->orderBy('id','asc')->get();
+        $vintage = Pokemonset::where('generation_id','=',0)->orderBy('release_date','asc')->get();
 
         $modern = Pokemonset::where('generation_id','=',8)->orWhere('generation_id','=',9)->orderBy('release_date','asc')->get();
 
