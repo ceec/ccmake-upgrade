@@ -85,7 +85,7 @@ class PageController extends Controller
 
        // $projects = Category::all();
 
-        return  view('pages.index')
+        return  view('pages.projectsall')
         ->with('project',$project)
         ->with('steps',$steps);
     }   

@@ -6,44 +6,26 @@ ccmakesthings
 @stop
 
 @section('content')
-<style>
-.cosplay {
-	background-color: #e2aef2;
-}
 
-.programming {
-	background-color: #afd2ff;
-}
-
-.step-container {
-	padding-top: 10px;
-	padding-bottom: 5px;
-}
-</style>
-	<div class="container">
-		<table class="table">
-		<thead>
-			<tr>
-			<td>Title</td>
-			<td>Rating</td>
-			<td>Seen</td>
-			<td>Price</td>
-			</tr>
-		</thead>
-
-	@foreach($movies as $movie)
-		<tr>
-			<td>{{$movie->title}}</td>
-			<td>{{$movie->rating_id}}</td>
-			<td>{{$movie->time}}</td>
-			<td>{{$movie->price}}</td>
-		</tr>
-		
-
-
-
-	@endforeach
-	</table>
-	</div>
+<div class="container">
+    <div class="row">
+    @foreach (array_chunk($minerals->getCollection()->all(),3) as $row)
+        <div class="row">
+            @foreach ($row as $key => $mineral)         
+            <div class="col-md-4">
+              <div class="card" style="width: 18rem;">
+                <a href="rocks/{{$mineral->name}}"><img class="img-fluid" src="/images/rocks/{{$mineral->image}}"></a>
+                <div class="card-body">
+                  <h5 class="card-title">{{$mineral->name}} <small class="pull-right">{!! $mineral->formula !!}</small></h5>
+                  <p class="card-text"></p>
+                </div>
+              </div>            
+            </div>
+            @endforeach
+        </div>            
+    @endforeach   
+  
+    </div>
+</div>
 
 @endsection

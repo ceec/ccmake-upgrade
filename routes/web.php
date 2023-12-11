@@ -32,12 +32,16 @@ Route::get('/counties','App\Http\Controllers\PageController@counties');
 Route::get('/chelsea','App\Http\Controllers\PageController@chelsea');
 Route::get('/manga','App\Http\Controllers\PageController@manga');
 Route::get('/movies','App\Http\Controllers\PageController@movies');
-Route::get('/projects','App\Http\Controllers\PageController@projects');
 Route::get('/pokemon','App\Http\Controllers\PageController@pokemoncards');
 Route::get('/resources','App\Http\Controllers\PageController@resources');
 // this is a different database for some reason? lets just combine it
 Route::get('/time','App\Http\Controllers\PageController@time');
 Route::get('/wordcount','App\Http\Controllers\PageController@wordcount');
+
+// projects
+Route::get('/projects','App\Http\Controllers\PageController@projects');
+Route::get('/projects/all','App\Http\Controllers\PageController@projectsAll');
+
 
 //into the pokemoncard database
 Route::get('/pokemon/card/{card}','App\Http\Controllers\PokemonController@card');
