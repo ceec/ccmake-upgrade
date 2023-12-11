@@ -16,7 +16,7 @@ class MusicController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function music(){
-        $songs = Song::all();
+        $songs = Song::take(10)->get();
 
         return  view('pages.music')
         ->with('songs',$songs);
