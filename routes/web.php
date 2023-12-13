@@ -62,3 +62,7 @@ Route::get('/books','App\Http\Controllers\BookController@books');
 Route::get('/books/group/{group}','App\Http\Controllers\BookController@groups');
 Route::get('/books/type/{type}','App\Http\Controllers\BookController@types');
 
+///data!
+Route::get('/data/counties','App\Http\Controllers\DataController@counties');
+Route::get('/data/words','App\Http\Controllers\DataController@words');
+Route::get('/data/grid/{project_id}','App\Http\Controllers\DataController@grid');

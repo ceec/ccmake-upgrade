@@ -95,7 +95,7 @@ counties - ccmakesthings
           .attr("fill", function(d) { 
             //console.log(d.id);
             //console.log('data: '+test.has("$"+d.id));
-              if ((d.id == 36075) || (d.id == 08069) || (d.id == 36055)) {
+              if ((d.id == 36075) || (d.id == 08069) || (d.id == 36055) || (d.id == 08031) ) {
                 return "red";//on condition match
              } else if (visited.has(d.id) ){
                 return "#6699FF";

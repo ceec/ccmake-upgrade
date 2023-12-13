@@ -205,7 +205,7 @@ class PageController extends Controller
         //https://stackoverflow.com/questions/5554075/mysql-get-last-distinct-set-of-records
         //SELECT * FROM wordcounts WHERE id IN (SELECT MAX(id) FROM wordcounts GROUP BY document_id)
         
-        $total = DB::select('SELECT sum(count) as total FROM writing.wordcounts WHERE id IN (SELECT MAX(id) FROM writing.wordcounts GROUP BY document_id)');
+        $total = DB::select('SELECT sum(count) as total FROM wordcounts WHERE id IN (SELECT MAX(id) FROM wordcounts GROUP BY document_id)');
 
         $total = $total[0]->total;
 
