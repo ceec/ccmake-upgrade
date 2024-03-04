@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Wordcount extends Model
 {
     use HasFactory;
+
+    protected $table = 'writing.wordcounts';
 }
