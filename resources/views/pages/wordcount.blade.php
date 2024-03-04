@@ -28,7 +28,7 @@ var color = d3.scaleQuantize()
 
 var svg = d3.select("body")
   .selectAll("svg")
-  .data(d3.range(2002, 2024))
+  .data(d3.range(2002, 2025))
   .enter().append("svg")
     .attr("width", width)
     .attr("height", height)
