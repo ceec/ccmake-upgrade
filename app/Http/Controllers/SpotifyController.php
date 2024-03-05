@@ -23,9 +23,9 @@ class SpotifyController extends Controller {
    public function getListenedSongs(){
 
      $session = new SpotifyWebAPI\Session(
-       '2969b21eb1724877b88498acf8445a55',
-       '5f3cfbe4db014c3fb68dd7659313a527',
-       'http://localhost/spotify'
+        config('custom.SPOTIFY_CLIENT_ID'),
+        config('custom.SPOTIFY_CLIENT_SECRET'),
+        config('custom.SPOTIFY_URL')
      );
 
 
