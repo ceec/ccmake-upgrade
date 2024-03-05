@@ -66,3 +66,6 @@ Route::get('/books/type/{type}','App\Http\Controllers\BookController@types');
 Route::get('/data/counties','App\Http\Controllers\DataController@counties');
 Route::get('/data/words','App\Http\Controllers\DataController@words');
 Route::get('/data/grid/{project_id}','App\Http\Controllers\DataController@grid');
+
+// spotify
+Route::get('/spotify','App\Http\Controllers\SpotifyController@getListenedSongs');
