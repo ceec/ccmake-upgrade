@@ -50,7 +50,8 @@ Route::get('/pokemon/set/{set}','App\Http\Controllers\PokemonController@set');
 
 
 // music
-Route::get('/music','App\Http\Controllers\MusicController@music');
+Route::get('/music2','App\Http\Controllers\MusicController@music');
+Route::get('/music','App\Http\Controllers\MusicController@musicoverview');
 Route::get('/music/album/{album}','App\Http\Controllers\MusicController@album');
 
 //rocks - okay this is in a different db too? Or i dont have it locally

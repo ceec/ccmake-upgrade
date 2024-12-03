@@ -6,9 +6,26 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Album;
 use App\Models\Song;
+use App\Models\Spotifyplay;
 
 class MusicController extends Controller
 {
+
+    /**
+     * Music overview
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function musicoverview(){
+        $newsongs = Song::orderBy('id','desc')->take(10)->get();
+        $lastten = Spotifyplay::orderBy('id','desc')->take(10)->get();
+        $mostPlays = Song::orderBy('spotify_plays','desc')->take(10)->get();
+
+        return  view('pages.musicoverview')
+        ->with('newsongs',$newsongs)
+        ->with('mostplays',$mostPlays)
+        ->with('lastten',$lastten);
+    }  
 
     /**
      * All music
