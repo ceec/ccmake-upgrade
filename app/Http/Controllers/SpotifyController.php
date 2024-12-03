@@ -47,7 +47,7 @@ class SpotifyController extends Controller {
          // okay i dont know the best way to cron it so just gona have it pull in last 20 and i can
          // run it manually
 
-         $recent = $api->getMyRecentTracks(['limit' => 25]);  
+         $recent = $api->getMyRecentTracks(['limit' => 50]);  
          //$recent = $api->getMyRecentTracks(['after' => 1640382630000]);
 
          foreach ($recent->items as $track) {
