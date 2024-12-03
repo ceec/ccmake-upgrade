@@ -81,7 +81,7 @@ ccmakesthings
     <td><a href="">{{$song->findartist()}}</a></td>
     <td><a href="/music/album/{{$song->album->id}}">{{$song->album->name}}</a></td>
 <td>{{$song->track}}</td>
-<td>{{$song->spotifyplays()}}</td>
+<td>{{$song->spotify_plays}}</td>
 </tr>
 
 
