@@ -61,11 +61,11 @@ ccmakesthings
       <td>Plays</td>
 			</tr>
 		</thead>
-        @foreach($mostplays as $song)
+        @foreach($mostplays as $id => $song)
 <tr>
-    <td>{{$song->name}}</td>
+    <td>{{$song[0]->name}}</td>
     <?php //gross formatting of miliseconds
-                $milliseconds = $song->length;
+                $milliseconds = $song[0]->length;
                 $seconds = floor($milliseconds/1000);
                 $minutes = round(floor($seconds/60),2);
 
@@ -78,15 +78,11 @@ ccmakesthings
 
 ?>
 <td>{{$displayminutes}}:{{$displayseconds}}</td>
-    <td><a href="">{{$song->findartist()}}</a></td>
-    <td><a href="/music/album/{{$song->album->id}}">{{$song->album->name}}</a></td>
-<td>{{$song->track}}</td>
-<td>{{$song->spotify_plays}}</td>
+    <td><a href="">{{$song[0]->findartist()}}</a></td>
+    <td><a href="/music/album/{{$song[0]->album->id}}">{{$song[0]->album->name}}</a></td>
+<td>{{$song[0]->track}}</td>
+<td>{{$song['count']}}</td>
 </tr>
-
-
-
-
 @endforeach
 </table>
 </div>   

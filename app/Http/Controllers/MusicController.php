@@ -19,7 +19,17 @@ class MusicController extends Controller
     public function musicoverview(){
         $newsongs = Song::orderBy('id','desc')->take(10)->get();
         $lastten = Spotifyplay::orderBy('id','desc')->take(10)->get();
-        $mostPlays = Song::orderBy('spotify_plays','desc')->take(10)->get();
+        //broke the spotify_plays column, counting multiple ones
+        //$mostPlays = Song::orderBy('spotify_plays','desc')->take(10)->get();
+        // this returns count, and song_id
+        // LOL formatting is a mess, clean up when ambitious
+        $playCounts = Spotifyplay::select('song_id',DB::raw('count(id) as count'))->groupBy('song_id')->orderBy('count','DESC')->take(10)->get();
+
+        $mostPlays = [];
+        foreach($playCounts as $id => $play) {
+            $mostPlays[$id] = Song::where('id','=',$play->song_id)->get();
+            $mostPlays[$id]['count'] = $play['count'];
+        }
 
         return  view('pages.musicoverview')
         ->with('newsongs',$newsongs)
