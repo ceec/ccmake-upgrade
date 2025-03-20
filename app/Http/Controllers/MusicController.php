@@ -27,7 +27,7 @@ class MusicController extends Controller
 
         $mostPlays = [];
         foreach($playCounts as $id => $play) {
-            $mostPlays[$id] = Song::where('id','=',$play->song_id)->get();
+            $mostPlays[$id] = Song::where('spotify_id','=',$play->song_id)->get();
             $mostPlays[$id]['count'] = $play['count'];
         }
 
