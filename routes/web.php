@@ -37,6 +37,7 @@ Route::get('/resources','App\Http\Controllers\PageController@resources');
 // this is a different database for some reason? lets just combine it
 Route::get('/time','App\Http\Controllers\PageController@time');
 Route::get('/wordcount','App\Http\Controllers\PageController@wordcount');
+Route::get('/onepiece','App\Http\Controllers\PageController@onepiece');
 
 // projects
 Route::get('/projects','App\Http\Controllers\PageController@projects');
@@ -48,6 +49,11 @@ Route::get('/pokemon/card/{card}','App\Http\Controllers\PokemonController@card')
 Route::get('/pokemon/need/{set}','App\Http\Controllers\PokemonController@need');
 Route::get('/pokemon/set/{set}','App\Http\Controllers\PokemonController@set');
 
+// one piece card database
+Route::get('/onepiece/card/{card}','App\Http\Controllers\OnepieceController@card');
+Route::get('/onepiece/need/{set}','App\Http\Controllers\OnepieceController@need');
+Route::get('/onepiece/set/{set}','App\Http\Controllers\OnepieceController@set');
+Route::get('/onepiece/character/{character}','App\Http\Controllers\OnepieceController@character');
 
 // music
 Route::get('/music2','App\Http\Controllers\MusicController@music');

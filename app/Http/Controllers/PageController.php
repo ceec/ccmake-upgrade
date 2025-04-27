@@ -11,6 +11,7 @@ use App\Models\Group;
 use App\Models\Item;
 use App\Models\Mineral;
 use App\Models\Movie;
+use App\Models\Onepieceset;
 use App\Models\Pokemonset;
 use App\Models\Project;
 use App\Models\Projectstep;
@@ -101,6 +102,18 @@ class PageController extends Controller
 
         return  view('pages.movies')
         ->with('movies',$movies);
+    }  
+
+    /**
+     * One piece cards
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function onepiece(){
+        $sets = Onepieceset::get();
+
+        return  view('pages.onepiece')
+            ->with('sets',$sets);
     }  
 
     /**
