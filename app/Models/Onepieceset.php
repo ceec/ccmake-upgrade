@@ -57,4 +57,10 @@ class Onepieceset extends Model
 
         return $total;
     }      
+
+    // Return the set number for images, no dash
+    public function imageNumber() {
+
+        return str_replace('-','',$this->shortname);
+    }
 }
