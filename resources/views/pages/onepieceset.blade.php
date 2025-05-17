@@ -61,8 +61,10 @@ ccmakesthings
             @endif
             {{$card->source}}
             @else
-                @if ( $card->card_number == 1)
+                @if ( $card->card_number == 1 )
                 <img class="card-image dont-have" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}.png"><br>
+                @elseif ( $card->original_set_id != 0 )
+                <img class="card-image dont-have" src="/images/onepiece/{{$card->set_url}}/{{$card->set_imagename}}-{{$card->original_set_number}}-{{$card->card_number}}.png"><br>
                 @else
                 <img class="card-image dont-have" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
                 @endif

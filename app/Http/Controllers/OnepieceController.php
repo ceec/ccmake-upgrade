@@ -25,7 +25,9 @@ class OnepieceController extends Controller
         // TODO: If i have multiple it displays it twice
         $cards = DB::table('onepiececards')
         ->where('set_id','=',$setinfo->id)
+        ->select('onepiececards.*','onepieceusercards.*','onepiecesets.url as set_url','onepiecesets.imagename as set_imagename')
         ->leftJoin('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')
+        ->leftJoin('onepiecesets','onepiececards.originaL_set_id','=','onepiecesets.id')
         ->get();
 
         return  view('pages.onepieceset')

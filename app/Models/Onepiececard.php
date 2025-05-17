@@ -17,4 +17,13 @@ class Onepiececard extends Model
     {
         return $this->belongsTo(Pokemonusercard::class);
     }    
+
+    public function originalSetUrl() {
+        // $setName = Onepieceset:: where('id','=',$this->original_set_id)->get();
+
+        // return $setName->url;
+
+        return 'test';
+    }
+
 }
