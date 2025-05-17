@@ -23,7 +23,7 @@ class Onepieceset extends Model
         // WOO it works, get all the cards I dont have in the set
         $cards = DB::table('onepiececards')
         ->where('set_id','=',$this->id)
-        ->whereNotIn('id',DB::table('onepiececards')->where('set_id','=',$this->id)->join('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')->pluck('onepiececards.id'))
+        ->whereNotIn('onepiececards.id',DB::table('onepiececards')->where('set_id','=',$this->id)->join('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')->pluck('onepiececards.id'))
         ->select('onepiececards.*','onepieceusercards.*','onepiecesets.url as set_url','onepiecesets.imagename as set_imagename')
         ->leftJoin('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')
         ->leftJoin('onepiecesets','onepiececards.originaL_set_id','=','onepiecesets.id')
