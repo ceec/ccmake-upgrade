@@ -59,7 +59,6 @@ ccmakesthings
                 @else
                 <img class="card-image" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
                 @endif
-                {{ dd($card)}}
                 {{ $card->last_price}}
                 <br>
             </div>
