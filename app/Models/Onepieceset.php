@@ -24,9 +24,11 @@ class Onepieceset extends Model
         $cards = DB::table('onepiececards')
         ->where('set_id','=',$this->id)
         ->whereNotIn('onepiececards.id',DB::table('onepiececards')->where('set_id','=',$this->id)->join('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')->pluck('onepiececards.id'))
-        ->select('onepiececards.*','onepieceusercards.*','onepiecesets.url as set_url','onepiecesets.imagename as set_imagename')
+        ->select('onepiececards.*','onepieceusercards.*','onepiecesets.url as set_url','onepiecesets.imagename as set_imagename','onepiececardprices.price as last_price')
         ->leftJoin('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')
         ->leftJoin('onepiecesets','onepiececards.originaL_set_id','=','onepiecesets.id')
+        // there has to be a better way to do this
+        ->leftJoin('onepiececardprices','onepiececards.id','=','onepiececardprices.onepiececard_id')
         ->get();
 
         return $cards;
