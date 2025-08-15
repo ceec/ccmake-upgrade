@@ -76,3 +76,20 @@ Route::get('/data/grid/{project_id}','App\Http\Controllers\DataController@grid')
 
 // spotify
 Route::get('/spotify','App\Http\Controllers\SpotifyController@getListenedSongs');
+
+// attempting authentication
+
+Route::get('/dashboard','App\Http\Controllers\HomeController@dashboard', function () {
+    // ...
+})->middleware(['verified']);
+
+// Blog
+Route::get('/dashboard/blog/add','App\Http\Controllers\BlogController@addDisplay', function () {})->middleware(['verified']);
+
+//add edit blog
+// Route::get('/home/blog/add','BlogController@addDisplay');
+// Route::get('/home/blog/edit/{blog_id}','BlogController@editDisplay');
+// Route::get('/home/blog/list','BlogController@listDisplay');
+// //posting
+// Route::post('/add/blog','BlogController@add');
+// Route::post('/edit/blog','BlogController@edit');
