@@ -22,8 +22,8 @@ Route::get('/', 'App\Http\Controllers\PageController@index');
 ///everything is a link!
 Route::get('/category/{category}','App\Http\Controllers\PageController@category');
 Route::get('/project/{project}','App\Http\Controllers\PageController@project');
-Route::get('/tag/{tag}','PageController@tag');
-Route::get('/tool/{tool}','PageController@tool');
+Route::get('/tag/{tag}','App\Http\Controllers\PageController@tag');
+Route::get('/tool/{tool}','App\Http\Controllers\PageController@tool');
 
 
 //specific pages
