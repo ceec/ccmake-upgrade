@@ -75,7 +75,7 @@ class BlogController extends Controller {
         $b->save();
 
 
-        return redirect('/home');          
+        return redirect('/dashboard');          
     } 
 
 
