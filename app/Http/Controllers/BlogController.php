@@ -87,7 +87,7 @@ class BlogController extends Controller {
     public function listDisplay() {
             $blogs = Projectstep::orderBy('created_at','DESC')->get();
 
-            return view('admin.blogList')
+            return view('dashboard.blogList')
             ->with('blogs',$blogs);
     } 
 
@@ -100,7 +100,7 @@ class BlogController extends Controller {
             $blog = Projectstep::find($blog_id);
             $projects = Project::pluck('name','id');
 
-            return view('admin.blogEdit')
+            return view('dashboard.blogEdit')
             ->with('blog',$blog)
             ->with('projects',$projects);
     } 
@@ -123,7 +123,7 @@ class BlogController extends Controller {
         $up->updated_by = Auth::id();  
         $up->save();
    
-        return redirect('/home/blog/edit/'.$blog_id);       
+        return redirect('/dashboard/blog/edit/'.$blog_id);       
     } 
 
 

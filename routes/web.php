@@ -86,9 +86,16 @@ Route::get('/dashboard','App\Http\Controllers\DashboardController@index', functi
 
 // Blog
 Route::get('/dashboard/blog/add','App\Http\Controllers\BlogController@addDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/blog/list','App\Http\Controllers\BlogController@listDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/blog/edit/{blog_id}','App\Http\Controllers\BlogController@editDisplay', function () {})->middleware(['verified']);
+
 //posting
-Route::post('/add/blog','App\Http\Controllers\BlogController@add');
-Route::post('/edit/blog','App\Http\Controllers\BlogController@edit');
+Route::post('/add/blog','App\Http\Controllers\BlogController@add', function () {})->middleware(['verified']);
+Route::post('/edit/blog','App\Http\Controllers\BlogController@edit', function () {})->middleware(['verified']);
+
+// Cards
+Route::get('/dashboard/blog/add','App\Http\Controllers\BlogController@addDisplay', function () {})->middleware(['verified']);
+
 //add edit blog
 // Route::get('/home/blog/add','BlogController@addDisplay');
 // Route::get('/home/blog/edit/{blog_id}','BlogController@editDisplay');

@@ -31,6 +31,15 @@
                         </div>                                                
                     </div>
                     <hr>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <h4>Cards</h4>
+                            <a href="/dashboard/card/add">Add New Card</a><br>
+                            <a href="/dashboard/set/add">Add New Set</a><br>
+                            <a href="/dashboard/carduser/add">Add New User Card</a>
+                        </div>
+                    </div>
+                    <hr>
                         <div class="row">
                             <div class="col-md-3">
                                 <h2>Tools</h2>
