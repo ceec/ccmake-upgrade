@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Models\Onepiecencard;
+use App\Models\Onepiececard;
 use App\Models\Onepieceset;
 use App\Models\Onepieceusercard;
 use App\Models\Onepiececharacter;
@@ -70,5 +71,122 @@ class OnepieceController extends Controller
         return view('pages.onepieceset')
         ->with('set',$character)
         ->with('cards',$cards);
-    }   
+    }
+
+    /**
+     * Add card  UI
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addCardDisplay() {
+        //get list of projects to choose what one to work with
+        $sets = Onepieceset::orderBy('release_date','DESC')->pluck('name','id');
+        $characters = Onepiececharacter::orderBy('name','ASC')->pluck('name','id');
+
+        return view('dashboard.onepieceCardAdd')
+            ->with('characters',$characters)
+            ->with('sets',$sets);
+} 
+
+    /**
+     * Add one piece card
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addCard(Request $request) {
+
+        $this->validate($request, [
+            'name' => 'required',
+        
+        ]);
+
+        $b = new Onepiececard;
+        $b->name = $request->input('name');
+        $b->set_id = $request->input('set_id');
+        $b->set_number = $request->input('set_number');
+        $b->card_number = $request->input('card_number');
+        $b->character_id = $request->input('character_id');
+        $b->rarity_id = 1;
+        $b->original_set_id = $request->input('original_set_id');
+        $b->original_set_number = $request->input('original_set_number');
+        $b->save();
+
+        return redirect('/dashboard');          
+    }
+
+    /**
+     * Add set  UI
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addSetDisplay() {
+        return view('dashboard.onepieceSetAdd');
+    }    
+    
+    /**
+     * Add one piece card set
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addSet(Request $request) {
+
+        $this->validate($request, [
+            'name' => 'required',
+        
+        ]);
+
+        $b = new Onepieceset;
+        $b->name = $request->input('name');
+        $b->url = $request->input('url');
+        $b->release_date = $request->input('release_date');
+        $b->shortname = $request->input('shortname');
+        $b->imagename = $request->input('imagename');
+        $b->save();
+
+        return redirect('/dashboard');          
+    }  
+    
+    /**
+     * List sets for eiting
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listSetDisplay() {
+        $sets = Onepieceset::orderBy('release_date','DESC')->get();
+
+        return view('dashboard.onepieceSetList')
+        ->with('sets',$sets);
+}
+
+    /**
+     * UI for editing sets
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editSetDisplay($set_id) {
+        $set = Onepieceset::find($set_id);
+
+        return view('dashboard.onepieceSetEdit')
+        ->with('set',$set);
+} 
+
+    /**
+     * Edit set
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editSet(Request $request) {
+        $set_id = $request->input('set_id');
+
+        $up = Onepieceset::find($set_id);
+        $up->name = $request->input('name');
+        $up->url = $request->input('url');
+        $up->release_date = $request->input('release_date');
+        $up->shortname = $request->input('shortname');
+        $up->imagename = $request->input('imagename');
+        $up->save();
+   
+        return redirect('/dashboard/onepieceset/edit/'.$set_id);       
+    } 
+
 }

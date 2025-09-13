@@ -32,12 +32,17 @@
                     </div>
                     <hr>
                     <div class="row">
-                        <div class="col-md-3">
-                            <h4>Cards</h4>
-                            <a href="/dashboard/card/add">Add New Card</a><br>
-                            <a href="/dashboard/set/add">Add New Set</a><br>
-                            <a href="/dashboard/carduser/add">Add New User Card</a>
+                        <div class="col-md-4">
+                            <h2>One Piece Cards</h2>
+                            <a href="/dashboard/onepiececard/add">Add New One Piece Card</a><br>
+                            <a href="/dashboard/onepiececard/list">Edit One Piece Card</a><br>
+                            <a href="/dashboard/onepiececarduser/add">Add New One Piece User Card</a>
                         </div>
+                        <div class="col-md-4">
+                            <h2>One Piece Sets</h2>
+                            <a href="/dashboard/onepieceset/add">Add New One Piece Set</a><br>
+                            <a href="/dashboard/onepieceset/list">Edit One Piece Set</a><br>
+                        </div>                        
                     </div>
                     <hr>
                         <div class="row">

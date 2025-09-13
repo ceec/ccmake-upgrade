@@ -88,18 +88,24 @@ Route::get('/dashboard','App\Http\Controllers\DashboardController@index', functi
 Route::get('/dashboard/blog/add','App\Http\Controllers\BlogController@addDisplay', function () {})->middleware(['verified']);
 Route::get('/dashboard/blog/list','App\Http\Controllers\BlogController@listDisplay', function () {})->middleware(['verified']);
 Route::get('/dashboard/blog/edit/{blog_id}','App\Http\Controllers\BlogController@editDisplay', function () {})->middleware(['verified']);
-
 //posting
 Route::post('/add/blog','App\Http\Controllers\BlogController@add', function () {})->middleware(['verified']);
 Route::post('/edit/blog','App\Http\Controllers\BlogController@edit', function () {})->middleware(['verified']);
 
-// Cards
-Route::get('/dashboard/blog/add','App\Http\Controllers\BlogController@addDisplay', function () {})->middleware(['verified']);
+// One Piece
+// One Piece Cards
+Route::get('/dashboard/onepiececard/add','App\Http\Controllers\OnepieceController@addCardDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/onepiececard/list','App\Http\Controllers\OnepieceController@listCardDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/onepiececard/edit/{card_id}','App\Http\Controllers\OnepieceController@editCardDisplay', function () {})->middleware(['verified']);
+//posting
+Route::post('/add/onepiececard','App\Http\Controllers\OnepieceController@addCard', function () {})->middleware(['verified']);
+Route::post('/edit/onepiececard','App\Http\Controllers\OnepieceController@editCard', function () {})->middleware(['verified']);
 
-//add edit blog
-// Route::get('/home/blog/add','BlogController@addDisplay');
-// Route::get('/home/blog/edit/{blog_id}','BlogController@editDisplay');
-// Route::get('/home/blog/list','BlogController@listDisplay');
-// //posting
-// Route::post('/add/blog','BlogController@add');
-// Route::post('/edit/blog','BlogController@edit');
+// One Piece Card sets
+Route::get('/dashboard/onepieceset/add','App\Http\Controllers\OnepieceController@addSetDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/onepieceset/list','App\Http\Controllers\OnepieceController@listSetDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/onepieceset/edit/{card_id}','App\Http\Controllers\OnepieceController@editSetDisplay', function () {})->middleware(['verified']);
+//posting
+Route::post('/add/onepieceset','App\Http\Controllers\OnepieceController@addSet', function () {})->middleware(['verified']);
+Route::post('/edit/onepieceset','App\Http\Controllers\OnepieceController@editSet', function () {})->middleware(['verified']);
+
