@@ -79,7 +79,6 @@ class OnepieceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addCardDisplay() {
-        //get list of projects to choose what one to work with
         $sets = Onepieceset::orderBy('release_date','DESC')->pluck('name','id');
         $characters = Onepiececharacter::orderBy('name','ASC')->pluck('name','id');
         // last card
@@ -88,7 +87,7 @@ class OnepieceController extends Controller
         $nextCard = str_pad( $next , 3 , '0', STR_PAD_LEFT );
         // last set
         $lastset = Onepiececard::orderBy('created_at','DESC')->pluck('set_id')->first();
-        
+
         return view('dashboard.onepieceCardAdd')
             ->with('characters',$characters)
             ->with('lastset',$lastset)
@@ -121,6 +120,55 @@ class OnepieceController extends Controller
 
         return redirect('/dashboard');          
     }
+
+    /**
+     * List cards for eiting
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listCardDisplay() {
+        $cards = Onepiececard::orderBy('created_at','DESC')->get();
+
+        return view('dashboard.onepieceCardList')
+        ->with('cards',$cards);
+    }
+
+    /**
+     * UI for editing cards
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCardDisplay($card_id) {
+        $card = Onepiececard::find($card_id);
+        $sets = Onepieceset::orderBy('release_date','DESC')->pluck('name','id');
+        $characters = Onepiececharacter::orderBy('name','ASC')->pluck('name','id');
+
+        return view('dashboard.onepieceCardEdit')
+        ->with('card',$card)
+        ->with('sets',$sets)
+        ->with('characters',$characters);
+    } 
+
+    /**
+     * Edit card
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCard(Request $request) {
+        $card_id = $request->input('card_id');
+
+        $up = Onepiececard::find($card_id);
+        $up->name = $request->input('name');
+        $up->set_id = $request->input('set_id');
+        $up->set_number = $request->input('set_number');
+        $up->card_number = $request->input('card_number');
+        $up->character_id = $request->input('character_id');
+        $up->original_set_id = $request->input('original_set_id');
+        $up->original_set_number = $request->input('original_set_number');
+        $up->save();
+   
+        return redirect('/dashboard/onepiececard/edit/'.$card_id);       
+    } 
 
     /**
      * Add set  UI
