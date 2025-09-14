@@ -86,9 +86,12 @@ class OnepieceController extends Controller
         $last = Onepiececard::orderBy('created_at','DESC')->pluck('set_number')->first();
         $next = $last + 1;
         $nextCard = str_pad( $next , 3 , '0', STR_PAD_LEFT );
-
+        // last set
+        $lastset = Onepiececard::orderBy('created_at','DESC')->pluck('set_id')->first();
+        
         return view('dashboard.onepieceCardAdd')
             ->with('characters',$characters)
+            ->with('lastset',$lastset)
             ->with('nextcard',$nextCard)
             ->with('sets',$sets);
 } 

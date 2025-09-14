@@ -22,7 +22,7 @@
               <label for="project">Set</label>
               <select name="set_id">
                 @foreach ($sets as $id => $name)
-                    <option value="{{ $id }}">
+                    <option value="{{ $id }}" @selected($id == $lastset)>
                         {{ $name }}
                     </option>
                 @endforeach
