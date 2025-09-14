@@ -42,6 +42,11 @@
                             <h2>One Piece Sets</h2>
                             <a href="/dashboard/onepieceset/add">Add New One Piece Set</a><br>
                             <a href="/dashboard/onepieceset/list">Edit One Piece Set</a><br>
+                        </div>     
+                        <div class="col-md-4">
+                            <h2>One Piece Characters</h2>
+                            <a href="/dashboard/onepiececharacter/add">Add New One Piece Character</a><br>
+                            <a href="/dashboard/onepiececharacter/list">Edit One Piece Character</a><br>
                         </div>                        
                     </div>
                     <hr>

@@ -189,4 +189,71 @@ class OnepieceController extends Controller
         return redirect('/dashboard/onepieceset/edit/'.$set_id);       
     } 
 
+    /**
+     * Add character  UI
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addCharacterDisplay() {
+        return view('dashboard.onepieceCharacterAdd');
+    }    
+    
+    /**
+     * Add one piece character
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addCharacter(Request $request) {
+
+        $this->validate($request, [
+            'name' => 'required',
+        
+        ]);
+
+        $b = new Onepiececharacter;
+        $b->name = $request->input('name');
+        $b->save();
+
+        return redirect('/dashboard');          
+    }  
+
+    /**
+     * List characters for eiting
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listCharacterDisplay() {
+        $characters = Onepiececharacter::orderBy('created_at','DESC')->get();
+
+        return view('dashboard.onepieceCharacterList')
+        ->with('characters',$characters);
+    }
+
+    /**
+     * UI for editing character
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCharacterDisplay($character_id) {
+        $character = Onepiececharacter::find($character_id);
+
+        return view('dashboard.onepieceCharacterEdit')
+        ->with('character',$character);
+    } 
+
+    /**
+     * Edit character
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCharacter(Request $request) {
+        $character_id = $request->input('character_id');
+
+        $up = Onepiececharacter::find($character_id);
+        $up->name = $request->input('name');
+        $up->save();
+   
+        return redirect('/dashboard/onepiececharacter/edit/'.$character_id);       
+    } 
+
 }

@@ -109,3 +109,10 @@ Route::get('/dashboard/onepieceset/edit/{card_id}','App\Http\Controllers\Onepiec
 Route::post('/add/onepieceset','App\Http\Controllers\OnepieceController@addSet', function () {})->middleware(['verified']);
 Route::post('/edit/onepieceset','App\Http\Controllers\OnepieceController@editSet', function () {})->middleware(['verified']);
 
+// One Piece Characters
+Route::get('/dashboard/onepiececharacter/add','App\Http\Controllers\OnepieceController@addCharacterDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/onepiececharacter/list','App\Http\Controllers\OnepieceController@listCharacterDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/onepiececharacter/edit/{card_id}','App\Http\Controllers\OnepieceController@editCharacterDisplay', function () {})->middleware(['verified']);
+//posting
+Route::post('/add/onepiececharacter','App\Http\Controllers\OnepieceController@addCharacter', function () {})->middleware(['verified']);
+Route::post('/edit/onepiececharacter','App\Http\Controllers\OnepieceController@editCharacter', function () {})->middleware(['verified']);
