@@ -50,7 +50,7 @@
               <input
                   type="text"
                   name="set_number"
-                  placeholder="001"
+                  value="{{$nextcard}}"
                 />
             </div>                           
             <div class="form-group">
@@ -58,6 +58,7 @@
               <input
                   type="text"
                   name="card_number"
+                  value ="1"
                 />
             </div>                   
             <div class="form-group">

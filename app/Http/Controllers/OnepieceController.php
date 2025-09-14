@@ -82,9 +82,14 @@ class OnepieceController extends Controller
         //get list of projects to choose what one to work with
         $sets = Onepieceset::orderBy('release_date','DESC')->pluck('name','id');
         $characters = Onepiececharacter::orderBy('name','ASC')->pluck('name','id');
+        // last card
+        $last = Onepiececard::orderBy('created_at','DESC')->pluck('set_number')->first();
+        $next = $last + 1;
+        $nextCard = str_pad( $next , 3 , '0', STR_PAD_LEFT );
 
         return view('dashboard.onepieceCardAdd')
             ->with('characters',$characters)
+            ->with('nextcard',$nextCard)
             ->with('sets',$sets);
 } 
 
