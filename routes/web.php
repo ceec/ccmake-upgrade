@@ -116,3 +116,21 @@ Route::get('/dashboard/onepiececharacter/edit/{card_id}','App\Http\Controllers\O
 //posting
 Route::post('/add/onepiececharacter','App\Http\Controllers\OnepieceController@addCharacter', function () {})->middleware(['verified']);
 Route::post('/edit/onepiececharacter','App\Http\Controllers\OnepieceController@editCharacter', function () {})->middleware(['verified']);
+
+// Pokemon
+// Pokemon Cards
+Route::get('/dashboard/pokemoncard/add','App\Http\Controllers\PokemonController@addCardDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/pokemoncard/list','App\Http\Controllers\PokemonController@listCardDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/pokemoncard/edit/{card_id}','App\Http\Controllers\PokemonController@editCardDisplay', function () {})->middleware(['verified']);
+//posting
+Route::post('/add/pokemoncard','App\Http\Controllers\PokemonController@addCard', function () {})->middleware(['verified']);
+Route::post('/edit/pokemoncard','App\Http\Controllers\PokemonController@editCard', function () {})->middleware(['verified']);
+
+// Pokemon sets
+Route::get('/dashboard/pokemonset/add','App\Http\Controllers\PokemonController@addSetDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/pokemonset/list','App\Http\Controllers\PokemonController@listSetDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/pokemonset/edit/{card_id}','App\Http\Controllers\PokemonController@editSetDisplay', function () {})->middleware(['verified']);
+//posting
+Route::post('/add/pokemonset','App\Http\Controllers\PokemonController@addSet', function () {})->middleware(['verified']);
+Route::post('/edit/pokemonset','App\Http\Controllers\PokemonController@editSet', function () {})->middleware(['verified']);
+

@@ -50,6 +50,25 @@
                         </div>                        
                     </div>
                     <hr>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h2>Pokemon Cards</h2>
+                            <a href="/dashboard/pokemoncard/add">Add New Pokemon Card</a><br>
+                            <a href="/dashboard/pokemoncard/list">Edit Pokemon Card</a><br>
+                            <a href="/dashboard/pokemoncarduser/add">Add New Pokemon User Card</a>
+                        </div>
+                        <div class="col-md-4">
+                            <h2>Pokemon Sets</h2>
+                            <a href="/dashboard/pokemonset/add">Add New Pokemon Set</a><br>
+                            <a href="/dashboard/pokemonset/list">Edit Pokemon Set</a><br>
+                        </div>     
+                        <div class="col-md-4">
+                            <h2>Pokemon</h2>
+                            <a href="/dashboard/pokemon/add">Add New Pokemon</a><br>
+                            <a href="/dashboard/pokemon/list">Edit Pokemon</a><br>
+                        </div>                        
+                    </div>                    
+                    <hr>
                         <div class="row">
                             <div class="col-md-3">
                                 <h2>Tools</h2>

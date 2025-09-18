@@ -49,4 +49,78 @@ class PokemonController extends Controller
         return view('pages.pokemonneed')
         ->with('set',$set);
     }
+
+    /**
+     * Add card  UI
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addCardDisplay() {
+        $sets = Pokemonset::orderBy('release_date','DESC')->pluck('name','id');
+        // last card
+        $last = Pokemoncard::orderBy('created_at','DESC')->pluck('set_number')->first();
+        $nextCard = $last + 1;
+        // last set
+        $lastset = Pokemoncard::orderBy('created_at','DESC')->pluck('set_id')->first();
+
+        return view('dashboard.pokemonCardAdd')
+            ->with('lastset',$lastset)
+            ->with('nextcard',$nextCard)
+            ->with('sets',$sets);
+} 
+
+    /**
+     * Add pokemon card
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addCard(Request $request) {
+
+        $this->validate($request, [
+            'name' => 'required',
+        
+        ]);
+
+        $b = new Pokemoncard;
+        $b->name = $request->input('name');
+        $b->set_id = $request->input('set_id');
+        $b->set_number = $request->input('set_number');
+        $b->pokemon_id = 0;
+        $b->rarity_id = 0;
+        $b->save();
+
+        return redirect('/dashboard');          
+    }
+
+    /**
+     * Add set  UI
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addSetDisplay() {
+        return view('dashboard.pokemonSetAdd');
+    }    
+
+    /**
+     * Add pokemon card set
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addSet(Request $request) {
+
+        $this->validate($request, [
+            'name' => 'required',
+        
+        ]);
+
+        $b = new Pokemonset;
+        $b->name = $request->input('name');
+        $b->url = $request->input('url');
+        $b->release_date = $request->input('release_date');
+        $b->generation_id = 0;
+        $b->save();
+
+        return redirect('/dashboard');          
+    }  
+
 }
