@@ -123,4 +123,46 @@ class PokemonController extends Controller
         return redirect('/dashboard');          
     }  
 
+    /**
+     * List sets for eiting
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listSetDisplay() {
+        $sets = Pokemonset::orderBy('release_date','DESC')->get();
+
+        return view('dashboard.pokemonSetList')
+        ->with('sets',$sets);
+}
+
+    /**
+     * UI for editing sets
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editSetDisplay($set_id) {
+        $set = Pokemonset::find($set_id);
+
+        return view('dashboard.pokemonSetEdit')
+        ->with('set',$set);
+} 
+
+    /**
+     * Edit set
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editSet(Request $request) {
+        $set_id = $request->input('set_id');
+
+        $up = Pokemonset::find($set_id);
+        $up->name = $request->input('name');
+        $up->url = $request->input('url');
+        $up->release_date = $request->input('release_date');
+        $up->generation_id = $request->input('generation_id');
+        $up->save();
+   
+        return redirect('/dashboard/pokemonset/edit/'.$set_id);       
+    } 
+
 }
