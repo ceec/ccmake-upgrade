@@ -126,6 +126,10 @@ Route::get('/dashboard/pokemoncard/edit/{card_id}','App\Http\Controllers\Pokemon
 Route::post('/add/pokemoncard','App\Http\Controllers\PokemonController@addCard', function () {})->middleware(['verified']);
 Route::post('/edit/pokemoncard','App\Http\Controllers\PokemonController@editCard', function () {})->middleware(['verified']);
 
+// Pokemon User Cards
+Route::post('/add/pokemonusercard','App\Http\Controllers\PokemonController@addUserCard', function () {})->middleware(['verified']);
+
+
 // Pokemon sets
 Route::get('/dashboard/pokemonset/add','App\Http\Controllers\PokemonController@addSetDisplay', function () {})->middleware(['verified']);
 Route::get('/dashboard/pokemonset/list','App\Http\Controllers\PokemonController@listSetDisplay', function () {})->middleware(['verified']);

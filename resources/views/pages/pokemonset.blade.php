@@ -61,6 +61,17 @@ ccmakesthings
             @endif
             {{$card->source}}
             @else
+            @if (!Auth::guest())
+            <form method="POST" action="/add/pokemonusercard">
+                @csrf
+                <input type="hidden" name="user_id" value="1" />
+                <input type="hidden" name="set_id" value={{$card->set_id}} />
+                <input type="hidden" name="pokemoncard_id" value={{$card->pokemoncardid}} />     
+                <button type="submit">
+                    Add
+                </button>
+            </form>
+            @endif
             @if ($card->set_id > 117)
                 <img class="card-image dont-have" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.png"><br>
                 @else

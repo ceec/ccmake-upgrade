@@ -22,10 +22,18 @@ class PokemonController extends Controller
 
         // get all the cards in that set, add on if I have the card or not
         // TODO: If i have multiple it displays it twice
+        // $cards = DB::table('pokemoncards')
+        // ->where('set_id','=',$setinfo->id)
+        // ->leftJoin('pokemonusercards', 'pokemoncards.id', '=', 'pokemonusercards.pokemoncard_id')
+        // ->get();
+
         $cards = DB::table('pokemoncards')
         ->where('set_id','=',$setinfo->id)
+        ->select('pokemoncards.*','pokemonusercards.*','pokemoncards.id as pokemoncardid')
         ->leftJoin('pokemonusercards', 'pokemoncards.id', '=', 'pokemonusercards.pokemoncard_id')
         ->get();
+
+
 
         return  view('pages.pokemonset')
         ->with('set',$setinfo)
@@ -90,6 +98,25 @@ class PokemonController extends Controller
         $b->save();
 
         return redirect('/dashboard');          
+    }
+
+    /**
+     * Add pokemon user card
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addUserCard(Request $request) {
+        $b = new Pokemonusercard;
+        $b->user_id = $request->input('user_id');
+        $b->pokemoncard_id = $request->input('pokemoncard_id');
+        $b->price = 0.00;
+        $b->source = '';
+        $b->save();
+
+        $url = Pokemonset::where('id','=',$request->input('set_id'))->first();
+
+
+        return redirect('/pokemon/set/'.$url->url);          
     }
 
     /**
