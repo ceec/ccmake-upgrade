@@ -51,7 +51,7 @@ ccmakesthings
         <div>
             <span class="set-number">{{$card->set_number}}</span> <a href="/pokemon/{{$card->pokemon_id}}">{{$card->name}}</a><br>
             @if ($card->user_id)
-                @if ($card->set_id > 117)
+                @if ($card->set_id == 118 || $card->set_id == 119 || $card->set_id > 120)
                 <img class="card-image" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.png"><br>
                 @else
                 <img class="card-image" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.jpg"><br>
@@ -72,7 +72,7 @@ ccmakesthings
                 </button>
             </form>
             @endif
-            @if ($card->set_id > 117)
+            @if ($card->set_id == 118 || $card->set_id == 119 || $card->set_id > 120)
                 <img class="card-image dont-have" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.png"><br>
                 @else
                 <img class="card-image dont-have" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.jpg"><br>
