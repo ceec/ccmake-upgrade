@@ -97,7 +97,7 @@ class PokemonController extends Controller
         $b->rarity_id = 0;
         $b->save();
 
-        return redirect('/dashboard');          
+        return redirect('/dashboard/pokemoncard/add');          
     }
 
     /**
