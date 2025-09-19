@@ -116,7 +116,7 @@ class PokemonController extends Controller
         $url = Pokemonset::where('id','=',$request->input('set_id'))->first();
 
 
-        return redirect('/pokemon/set/'.$url->url);          
+        return redirect('/pokemon/set/'.$url->url.'/#'.$request->input('pokemoncard_id'));          
     }
 
     /**
