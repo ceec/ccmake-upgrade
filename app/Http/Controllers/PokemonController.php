@@ -100,6 +100,22 @@ class PokemonController extends Controller
         return redirect('/dashboard/pokemoncard/add');          
     }
 
+     /**
+     * Pokemon card display
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardDisplay($set_url,$pokemoncard_id) {
+        $set = Pokemonset::where('url','=',$set_url)->orderBy('release_date','DESC')->first();
+        $card = Pokemoncard::where('id','=',$pokemoncard_id)->first();
+        // need to change if other users
+        $usercards = Pokemonusercard::where('user_id','=',1)->where('pokemoncard_id','=',$pokemoncard_id)->get();
+        return view('pages.pokemonCard')
+            ->with('card',$card)
+            ->with('usercards',$usercards)
+            ->with('set',$set);
+    }    
+
     /**
      * Add pokemon user card
      *
@@ -117,6 +133,25 @@ class PokemonController extends Controller
 
 
         return redirect('/pokemon/set/'.$url->url.'/#'.$request->input('pokemoncard_id'));          
+    }
+
+    /**
+     * Edit pokemon user card
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editUserCard(Request $request) {
+        $usercard_id = $request->input('id');
+        $set_url = $request->input('set_url');
+        $pokemoncard_id = $request->input('pokemoncard_id');
+
+        $up = Pokemonusercard::find($usercard_id);
+        $up->price = $request->input('price');
+        $up->source = $request->input('source');
+        $up->date_acquired = $request->input('date_acquired');
+        $up->save();
+   
+        return redirect('/pokemon/set/'.$set_url.'/'.$pokemoncard_id);    
     }
 
     /**

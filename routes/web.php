@@ -45,9 +45,13 @@ Route::get('/projects/all','App\Http\Controllers\PageController@projectsAll');
 
 
 //into the pokemoncard database
+// Set specific card view
 Route::get('/pokemon/card/{card}','App\Http\Controllers\PokemonController@card');
 Route::get('/pokemon/need/{set}','App\Http\Controllers\PokemonController@need');
 Route::get('/pokemon/set/{set}','App\Http\Controllers\PokemonController@set');
+Route::get('/pokemon/set/{set_name}/{card_id}','App\Http\Controllers\PokemonController@cardDisplay');
+
+
 
 // one piece card database
 Route::get('/onepiece/card/{card}','App\Http\Controllers\OnepieceController@card');
@@ -128,6 +132,7 @@ Route::post('/edit/pokemoncard','App\Http\Controllers\PokemonController@editCard
 
 // Pokemon User Cards
 Route::post('/add/pokemonusercard','App\Http\Controllers\PokemonController@addUserCard', function () {})->middleware(['verified']);
+Route::post('/edit/pokemonusercard','App\Http\Controllers\PokemonController@editUserCard', function () {})->middleware(['verified']);
 
 
 // Pokemon sets
@@ -137,4 +142,3 @@ Route::get('/dashboard/pokemonset/edit/{card_id}','App\Http\Controllers\PokemonC
 //posting
 Route::post('/add/pokemonset','App\Http\Controllers\PokemonController@addSet', function () {})->middleware(['verified']);
 Route::post('/edit/pokemonset','App\Http\Controllers\PokemonController@editSet', function () {})->middleware(['verified']);
-
