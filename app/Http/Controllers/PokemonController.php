@@ -68,7 +68,7 @@ class PokemonController extends Controller
         // last card
         $last = Pokemoncard::orderBy('created_at','DESC')->pluck('set_number')->first();
 
-        if ($is_numeric($last)) {
+        if (is_numeric($last)) {
             $nextCard = $last + 1;
         } else {
             $nextCard = $last;
