@@ -67,7 +67,13 @@ class PokemonController extends Controller
         $sets = Pokemonset::orderBy('release_date','DESC')->pluck('name','id');
         // last card
         $last = Pokemoncard::orderBy('created_at','DESC')->pluck('set_number')->first();
-        $nextCard = $last + 1;
+
+        if ($is_numeric($last)) {
+            $nextCard = $last + 1;
+        } else {
+            $nextCard = $last;
+        }
+        
         // last set
         $lastset = Pokemoncard::orderBy('created_at','DESC')->pluck('set_id')->first();
 
