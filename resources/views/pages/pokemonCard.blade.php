@@ -19,7 +19,7 @@ ccmakesthings
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            @if ($card->set_id == 118 || $card->set_id == 119 || $card->set_id > 120)
+            @if ($card->set_id == 98 || $card->set_id == 118 || $card->set_id == 119 || $card->set_id > 120)
                 <img class="card-image" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.png"><br>
             @else
                 <img class="card-image" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.jpg"><br>
