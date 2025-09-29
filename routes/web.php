@@ -121,6 +121,11 @@ Route::get('/dashboard/onepiececharacter/edit/{card_id}','App\Http\Controllers\O
 Route::post('/add/onepiececharacter','App\Http\Controllers\OnepieceController@addCharacter', function () {})->middleware(['verified']);
 Route::post('/edit/onepiececharacter','App\Http\Controllers\OnepieceController@editCharacter', function () {})->middleware(['verified']);
 
+// One Piece User Cards
+Route::post('/add/onepieceusercard','App\Http\Controllers\OnepieceController@addUserCard', function () {})->middleware(['verified']);
+Route::post('/edit/onepieceusercard','App\Http\Controllers\OnepieceController@editUserCard', function () {})->middleware(['verified']);
+
+
 // Pokemon
 // Pokemon Cards
 Route::get('/dashboard/pokemoncard/add','App\Http\Controllers\PokemonController@addCardDisplay', function () {})->middleware(['verified']);

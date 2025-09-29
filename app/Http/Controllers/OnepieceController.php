@@ -26,7 +26,7 @@ class OnepieceController extends Controller
         // TODO: If i have multiple it displays it twice
         $cards = DB::table('onepiececards')
         ->where('set_id','=',$setinfo->id)
-        ->select('onepiececards.*','onepieceusercards.*','onepiecesets.url as set_url','onepiecesets.imagename as set_imagename')
+        ->select('onepiececards.*','onepieceusercards.*','onepiecesets.url as set_url','onepiecesets.imagename as set_imagename','onepiececards.id as onepiececardid')
         ->leftJoin('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')
         ->leftJoin('onepiecesets','onepiececards.originaL_set_id','=','onepiecesets.id')
         ->get();
@@ -119,6 +119,25 @@ class OnepieceController extends Controller
         $b->save();
 
         return redirect('/dashboard');          
+    }
+
+    /**
+     * Add one peice user card
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addUserCard(Request $request) {
+        $b = new Onepieceusercard;
+        $b->user_id = $request->input('user_id');
+        $b->onepiececard_id = $request->input('onepiececard_id');
+        $b->price = 0.00;
+        $b->source = '';
+        $b->save();
+
+        $url = Onepieceset::where('id','=',$request->input('set_id'))->first();
+
+
+        return redirect('/onepiece/set/'.$url->url.'/#'.$request->input('onepiececard_id'));          
     }
 
     /**
