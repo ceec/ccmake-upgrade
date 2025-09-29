@@ -48,7 +48,7 @@ class OnepieceController extends Controller
             $usercards = Onepieceusercard::where('user_id','=',Auth::user()->id)->pluck('onepiececard_id')->toArray();
             $cards = Onepiececard::where('set_id','=',$set->id)->whereNotIn('id',$usercards)->get();
         } else {
-            $cards = Onepiececard::where('set_id','=',$this->id)->get();
+            $cards = Onepiececard::where('set_id','=',$set->id)->get();
         }
 
         return view('pages.onepieceneed')
