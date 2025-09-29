@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Onepiececard;
+use App\Models\Onepiececardprice;
 use App\Models\Onepieceset;
 use App\Models\Onepieceusercard;
 use App\Models\Onepiececharacter;
@@ -145,12 +146,15 @@ class OnepieceController extends Controller
         // ->leftJoin('onepiecesets','onepiececards.originaL_set_id','=','onepiecesets.id')
         // ->get();
 
+        $prices = Onepiececardprice::where('onepiececard_id','=',$card->id)->orderBy('created_at','DESC')->get();
+
 
 
         // need to change if other users
         $usercards = Onepieceusercard::where('user_id','=',1)->where('onepiececard_id','=',$onepiececard_id)->get();
         return view('pages.onepieceCard')
             ->with('card',$card)
+            ->with('prices',$prices)
             ->with('usercards',$usercards)
             ->with('set',$set)
             ->with('originalset',$originalSet);

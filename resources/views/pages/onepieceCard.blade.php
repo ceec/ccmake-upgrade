@@ -33,6 +33,11 @@ ccmakesthings
             <hr>
             tcgcsv Id: {{$card->tcgcsv_id}}<br>
             Latest Price: {{$card->lastPrice()}}<br>
+            Price history:<br>
+            @foreach($prices as $price)
+                {{$price->created_at}} - ${{$price->price}}<br>
+            @endforeach
+
             @if (!Auth::guest())
                 <br><a href="/dashboard/onepiececard/edit/{{$card->id}}">Edit Card</a><br><br>
                 @if (Auth::user()->id == 1)
