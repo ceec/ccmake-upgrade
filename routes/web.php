@@ -84,7 +84,7 @@ Route::get('/spotify','App\Http\Controllers\SpotifyController@getListenedSongs')
 
 // Card Data
 // limiting to one piece first
-//Route::get('/onepiece/pricedata','App\Http\Controllers\CardpriceController@onepiecePriceData');
+Route::get('/onepiece/pricedata','App\Http\Controllers\CardpriceController@onepiecePriceData');
 Route::get('/onepiece/addTcgcsvIds','App\Http\Controllers\CardpriceController@onepieceAddTcgcsvId');
 
 // attempting authentication
