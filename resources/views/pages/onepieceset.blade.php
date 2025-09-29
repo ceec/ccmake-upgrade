@@ -48,7 +48,7 @@ ccmakesthings
 <h2><a href="/onepiece">Sets</a> > {{$set->name}}</h2>
 <div class="cards">
     @foreach ($cards as $card)
-        <div>
+        <div id="{{$card->onepiececardid}}">
             <span class="set-number">{{$card->set_number}}</span>  <a href="{{$set->url}}/{{$card->onepiececardid}}">{{$card->name}}</a><br>
             @if ($card->user_id)
                 @if ( $card->card_number == 1)
