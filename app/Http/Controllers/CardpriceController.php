@@ -131,7 +131,7 @@ class CardpriceController extends Controller
                             
                                 //if ( isset($card->id) && ( $card->tcgcsv_id == 0 ) ) {
                                 if ( isset($card->id)  ) {
-                                    echo 'Adding tcgcsv_id: '. $product->productId.' for: '. $card->name;
+                                    echo 'Adding tcgcsv_id: '. $product->productId.' for: '. $card->name. ' id: '.$card->id;
                                     echo '<hr>';
 
                                     $up = Onepiececard::find($card->id);
