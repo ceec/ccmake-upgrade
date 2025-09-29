@@ -213,11 +213,13 @@ class OnepieceController extends Controller
      */
     public function editCardDisplay($card_id) {
         $card = Onepiececard::find($card_id);
+        $set = Onepieceset::where('id','=',$card->set_id)->first();
         $sets = Onepieceset::orderBy('release_date','DESC')->pluck('name','id');
         $characters = Onepiececharacter::orderBy('name','ASC')->pluck('name','id');
 
         return view('dashboard.onepieceCardEdit')
         ->with('card',$card)
+        ->with('set',$set)
         ->with('sets',$sets)
         ->with('characters',$characters);
     } 
@@ -238,6 +240,7 @@ class OnepieceController extends Controller
         $up->character_id = $request->input('character_id');
         $up->original_set_id = $request->input('original_set_id');
         $up->original_set_number = $request->input('original_set_number');
+        $up->tcgcsv_id =  $request->input('tcgcsv_id');
         $up->save();
    
         return redirect('/dashboard/onepiececard/edit/'.$card_id);       

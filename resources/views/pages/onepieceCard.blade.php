@@ -32,8 +32,9 @@ ccmakesthings
             Set: <a href="/onepiece/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
             <hr>
             tcgcsv Id: {{$card->tcgcsv_id}}<br>
-            Latest Price: {{$card->lastPrice()}}
+            Latest Price: {{$card->lastPrice()}}<br>
             @if (!Auth::guest())
+                <br><a href="/dashboard/onepiececard/edit/{{$card->id}}">Edit Card</a><br><br>
                 @if (Auth::user()->id == 1)
                     @foreach ($usercards as $usercard)
                     <hr>

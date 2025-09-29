@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
 
-    <h1>Edit One Piece Card</h1>
+    <h1>Edit <a href="/onepiece/set/{{$set->url}}/{{$card->id}}">{{$card->name}}</a></h1>
     
 @if (count($errors) > 0)
     <div class="alert alert-danger">
@@ -79,6 +79,14 @@
                   type="text"
                   name="original_set_number"
                   value="{{$card->original_set_number}}"
+                />
+            </div>   
+            <div class="form-group">
+              <label for="original-set-number">TCG csv id</label>
+              <input
+                  type="text"
+                  name="tcgcsv_id"
+                  value="{{$card->tcgcsv_id}}"
                 />
             </div>         
             <input
