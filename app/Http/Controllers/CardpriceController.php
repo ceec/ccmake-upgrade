@@ -20,10 +20,10 @@ class CardpriceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function onepiecePriceData(){
+    public function onepiecePriceData($tcgcsv_id){
         // get info on the set
         $client = new Client();
-        $url = 'https://tcgcsv.com/tcgplayer/68/23272/prices';
+        $url = 'https://tcgcsv.com/tcgplayer/68/'.$tcgcsv_id.'/prices';
 
         try {
             $response = $client->request('GET', $url);
@@ -66,11 +66,11 @@ class CardpriceController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function onepieceAddTcgcsvId(){
+    public function onepieceAddTcgcsvId($tcgcsv_id){
         // get info on the set
         $client = new Client();
         //$url = 'https://tcgcsv.com/tcgplayer/68/23272/products'; // OP-06 wings of the captain
-        $url = 'https://tcgcsv.com/tcgplayer/68/23333/products'; // EB-01 memorial collection
+        $url = 'https://tcgcsv.com/tcgplayer/68/'.$tcgcsv_id.'/products'; // EB-01 memorial collection
 
         try {
             $response = $client->request('GET', $url);
