@@ -19,15 +19,17 @@ ccmakesthings
 <div class="container">
     <div class="row">
         <div class="col-md-4">
-            @if ( $card->card_number == 1)
+            @if ( $card->card_number == 1 )
                 <img class="card-image" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}.png"><br>
+            @elseif ( $card->original_set_id != 0 )
+                <img class="card-image" src="/images/onepiece/{{$originalset->url}}/{{$originalset->imagename}}-{{$card->original_set_number}}-{{$card->card_number}}.png"><br>
             @else
                 <img class="card-image" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
             @endif
         </div>
         <div class="col-md-6">
             <h2>{{$card->name}}</h2>
-            Set: <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a><br><br>
+            Set: <a href="/onepiece/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
             @if (!Auth::guest())
                 @if (Auth::user()->id == 1)
                     @foreach ($usercards as $usercard)

@@ -127,14 +127,32 @@ class OnepieceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function cardDisplay($set_url,$onepiececard_id) {
-        $set = Onepieceset::where('url','=',$set_url)->orderBy('release_date','DESC')->first();
+        $set = Onepieceset::where('url','=',$set_url)->first();
         $card = Onepiececard::where('id','=',$onepiececard_id)->first();
+
+        if ($card->original_set_id != 0) {
+            $originalSet = Onepieceset::where('id','=',$card->original_set_id)->first();
+        } else {
+            $originalSet = '';
+        }
+
+
+        // $cards = DB::table('onepiececards')
+        // ->where('set_id','=',$setinfo->id)
+        // ->select('onepiececards.*','onepieceusercards.*','onepiecesets.url as set_url','onepiecesets.imagename as set_imagename','onepiececards.id as onepiececardid')
+        // ->leftJoin('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')
+        // ->leftJoin('onepiecesets','onepiececards.originaL_set_id','=','onepiecesets.id')
+        // ->get();
+
+
+
         // need to change if other users
         $usercards = Onepieceusercard::where('user_id','=',1)->where('onepiececard_id','=',$onepiececard_id)->get();
         return view('pages.onepieceCard')
             ->with('card',$card)
             ->with('usercards',$usercards)
-            ->with('set',$set);
+            ->with('set',$set)
+            ->with('originalset',$originalSet);
     }  
 
     /**
