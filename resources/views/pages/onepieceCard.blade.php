@@ -31,6 +31,7 @@ ccmakesthings
             <h2>{{$card->name}}</h2>
             Set: <a href="/onepiece/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
             <hr>
+            tcgcsv Id: {{$card->tcgcsv_id}}<br>
             Latest Price: {{$card->lastPrice()}}
             @if (!Auth::guest())
                 @if (Auth::user()->id == 1)
