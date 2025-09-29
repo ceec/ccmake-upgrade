@@ -69,7 +69,8 @@ class CardpriceController extends Controller
     public function onepieceAddTcgcsvId(){
         // get info on the set
         $client = new Client();
-        $url = 'https://tcgcsv.com/tcgplayer/68/23272/products';
+        //$url = 'https://tcgcsv.com/tcgplayer/68/23272/products'; // OP-06 wings of the captain
+        $url = 'https://tcgcsv.com/tcgplayer/68/23333/products'; // EB-01 memorial collection
 
         try {
             $response = $client->request('GET', $url);
