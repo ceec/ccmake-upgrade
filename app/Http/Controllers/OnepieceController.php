@@ -118,6 +118,7 @@ class OnepieceController extends Controller
         $b->rarity_id = 1;
         $b->original_set_id = $request->input('original_set_id');
         $b->original_set_number = $request->input('original_set_number');
+        $b->tcgcsv_id =  0;
         $b->save();
 
         return redirect('/dashboard');          
