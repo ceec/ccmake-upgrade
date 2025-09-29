@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-
+use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
@@ -18,18 +18,14 @@ class Onepieceset extends Model
     }
 
     public function cardsneeded() {
-        $cards = Onepiececard::where('set_id','=',$this->id)->get();
-
-        // WOO it works, get all the cards I dont have in the set
-        $cards = DB::table('onepiececards')
-        ->where('set_id','=',$this->id)
-        ->whereNotIn('onepiececards.id',DB::table('onepiececards')->where('set_id','=',$this->id)->join('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')->pluck('onepiececards.id'))
-        ->select('onepiececards.*','onepieceusercards.*','onepiecesets.url as set_url','onepiecesets.imagename as set_imagename','onepiececardprices.price as last_price')
-        ->leftJoin('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')
-        ->leftJoin('onepiecesets','onepiececards.originaL_set_id','=','onepiecesets.id')
-        // there has to be a better way to do this
-        ->leftJoin('onepiececardprices','onepiececards.id','=','onepiececardprices.onepiececard_id')
-        ->get();
+        // Lets actually use the users table now
+        //moving this up to the controller
+        if ( !Auth::guest() ) {
+            $usercards = Onepieceusercard::where('user_id','=',Auth::user()->id)->pluck('onepiececard_id')->toArray();
+            $cards = Onepiececard::whereNotIn('id',$usercards)->get();
+        } else {
+            $cards = Onepiececard::where('set_id','=',$this->id)->get();
+        }
 
         return $cards;
     }

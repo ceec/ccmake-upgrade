@@ -40,17 +40,18 @@ class OnepieceController extends Controller
     // display a specific card
 
 
-
-    // need - cards I need
-    // only going to do wotc first
     public function need($set) {
-        // ok figuring out cards I need
-        // have list of all the cards in the set, then have my list of cards in the set, so i can do one
-        // of those sql things thats like exclude
-        // so want all of pokmeoncards where set = set
         $set = Onepieceset::where('url','=',$set)->first();
 
+        if ( !Auth::guest() ) {
+            $usercards = Onepieceusercard::where('user_id','=',Auth::user()->id)->pluck('onepiececard_id')->toArray();
+            $cards = Onepiececard::where('set_id','=',$set->id)->whereNotIn('id',$usercards)->get();
+        } else {
+            $cards = Onepiececard::where('set_id','=',$this->id)->get();
+        }
+
         return view('pages.onepieceneed')
+        ->with('cards',$cards)
         ->with('set',$set);
     }
 
