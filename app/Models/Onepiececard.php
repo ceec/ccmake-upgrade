@@ -26,4 +26,10 @@ class Onepiececard extends Model
         return 'test';
     }
 
+    // Get the last price
+    public function lastPrice() {
+        $price = Onepiececardprice::where('onepiececard_id','=',$this->id)->orderBy('created_at','DESC')->pluck('price')->first();
+        return $price;
+    }    
+
 }
