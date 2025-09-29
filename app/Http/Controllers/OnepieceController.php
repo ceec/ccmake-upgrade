@@ -121,6 +121,22 @@ class OnepieceController extends Controller
         return redirect('/dashboard');          
     }
 
+     /**
+     * One piece card display
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function cardDisplay($set_url,$onepiececard_id) {
+        $set = Onepieceset::where('url','=',$set_url)->orderBy('release_date','DESC')->first();
+        $card = Onepiececard::where('id','=',$onepiececard_id)->first();
+        // need to change if other users
+        $usercards = Onepieceusercard::where('user_id','=',1)->where('onepiececard_id','=',$onepiececard_id)->get();
+        return view('pages.onepieceCard')
+            ->with('card',$card)
+            ->with('usercards',$usercards)
+            ->with('set',$set);
+    }  
+
     /**
      * Add one peice user card
      *
@@ -139,6 +155,25 @@ class OnepieceController extends Controller
 
         return redirect('/onepiece/set/'.$url->url.'/#'.$request->input('onepiececard_id'));          
     }
+
+    /**
+     * Edit one piece user card
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editUserCard(Request $request) {
+        $usercard_id = $request->input('id');
+        $set_url = $request->input('set_url');
+        $onepiececard_id = $request->input('onepiececard_id');
+
+        $up = Onepieceusercard::find($usercard_id);
+        $up->price = $request->input('price');
+        $up->source = $request->input('source');
+        $up->date_acquired = $request->input('date_acquired');
+        $up->save();
+   
+        return redirect('/onepiece/set/'.$set_url.'/'.$onepiececard_id);    
+    }    
 
     /**
      * List cards for eiting

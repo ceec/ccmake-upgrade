@@ -49,7 +49,7 @@ ccmakesthings
 <div class="cards">
     @foreach ($cards as $card)
         <div>
-            <span class="set-number">{{$card->set_number}}</span> <a href="/onepiece/character/{{$card->character_id}}">{{$card->name}}</a><br>
+            <span class="set-number">{{$card->set_number}}</span>  <a href="{{$set->url}}/{{$card->onepiececardid}}">{{$card->name}}</a><br>
             @if ($card->user_id)
                 @if ( $card->card_number == 1)
                 <img class="card-image" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}.png"><br>
