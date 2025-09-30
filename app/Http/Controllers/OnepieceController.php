@@ -81,7 +81,7 @@ class OnepieceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addCardDisplay() {
-        $sets = Onepieceset::orderBy('release_date','DESC')->pluck('name','id');
+        $sets = Onepieceset::orderBy('release_date','DESC')->pluck('shortname','id');
         $characters = Onepiececharacter::orderBy('name','ASC')->pluck('name','id');
         // last card
         $last = Onepiececard::orderBy('created_at','DESC')->pluck('set_number')->first();

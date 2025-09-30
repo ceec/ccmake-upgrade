@@ -23,11 +23,11 @@ ccmakesthings
 	<div class="container">
 <h2>the One Piece is real</h2>
     @foreach ($sets as $set)
-        {{$set->totalhavecards()}}/{{$set->totalcards()}}  <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a><br>
+		{{$set->shortname}} - {{$set->totalhavecards()}}/{{$set->totalcards()}} - <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a><br>
     @endforeach
 <h2>need</h2>
 	@foreach ($sets as $set)
-        {{$set->totalneedcards()}}/{{$set->totalcards()}}<a href="/onepiece/need/{{$set->url}}">{{$set->name}}</a><br>
+		{{$set->shortname}} - {{$set->totalneedcards()}}/{{$set->totalcards()}} - <a href="/onepiece/need/{{$set->url}}">{{$set->name}}</a><br>
 	@endforeach
 </div>
 
