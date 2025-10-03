@@ -27,7 +27,7 @@ ccmakesthings
         </div>
         <div class="col-md-6">
             <h2>{{$card->name}}</h2>
-            Set: <a href="/pokemon/set/{{$set->url}}">{{$set->name}}</a><br><br>
+            Set: <a href="/pokemon/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
             @if (!Auth::guest())
                 @if (Auth::user()->id == 1)
                     @foreach ($usercards as $usercard)
