@@ -101,6 +101,7 @@ class PokemonController extends Controller
         $b->set_number = $request->input('set_number');
         $b->pokemon_id = 0;
         $b->rarity_id = 0;
+        $b->tcgcsv_id = 0;
         $b->save();
 
         return redirect('/dashboard/pokemoncard/add');          
@@ -121,6 +122,52 @@ class PokemonController extends Controller
             ->with('usercards',$usercards)
             ->with('set',$set);
     }    
+
+    /**
+     * List cards for eiting
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listCardDisplay() {
+        $cards = Pokemoncard::orderBy('created_at','DESC')->get();
+
+        return view('dashboard.pokemonCardList')
+        ->with('cards',$cards);
+    }
+
+    /**
+     * UI for editing cards
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCardDisplay($card_id) {
+        $card = Pokemoncard::find($card_id);
+        $set = Pokemonset::where('id','=',$card->set_id)->first();
+        $sets = Pokemonset::orderBy('release_date','DESC')->pluck('name','id');
+
+        return view('dashboard.pokemonCardEdit')
+        ->with('card',$card)
+        ->with('set',$set)
+        ->with('sets',$sets);
+    }     
+
+    /**
+     * Edit card
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editCard(Request $request) {
+        $card_id = $request->input('card_id');
+
+        $up = Pokemoncard::find($card_id);
+        $up->name = $request->input('name');
+        $up->set_id = $request->input('set_id');
+        $up->set_number = $request->input('set_number');
+        $up->tcgcsv_id =  $request->input('tcgcsv_id');
+        $up->save();
+   
+        return redirect('/dashboard/pokemoncard/edit/'.$card_id);       
+    } 
 
     /**
      * Add pokemon user card
@@ -186,6 +233,7 @@ class PokemonController extends Controller
         $b->url = $request->input('url');
         $b->release_date = $request->input('release_date');
         $b->generation_id = 0;
+        $b->tcgcsv_id = 0;
         $b->save();
 
         return redirect('/dashboard');          
@@ -228,6 +276,7 @@ class PokemonController extends Controller
         $up->url = $request->input('url');
         $up->release_date = $request->input('release_date');
         $up->generation_id = $request->input('generation_id');
+        $up->tcgcsv_id = $request->input('tcgcsv_id');
         $up->save();
    
         return redirect('/dashboard/pokemonset/edit/'.$set_id);       

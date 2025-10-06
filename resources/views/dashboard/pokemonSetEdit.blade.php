@@ -49,6 +49,14 @@
                   name="generation_id"
                   value="{{$set->generation_id}}"
                 />
+            </div>   
+            <div class="form-group">
+              <label for="content">TCGcsv ID</label>
+                <input
+                  type="text"
+                  name="tcgcsv_id"
+                  value="{{$set->tcgcsv_id}}"
+                />
             </div>                 
             <input
                   type="hidden"

@@ -28,8 +28,10 @@ ccmakesthings
         <div class="col-md-6">
             <h2>{{$card->name}}</h2>
             Set: <a href="/pokemon/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
+
             @if (!Auth::guest())
                 @if (Auth::user()->id == 1)
+                    <br><a href="/dashboard/pokemoncard/edit/{{$card->id}}">Edit Card</a><br><br>
                     @foreach ($usercards as $usercard)
                     <hr>
                     <form method="POST" action="/edit/pokemonusercard">

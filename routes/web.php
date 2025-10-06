@@ -87,6 +87,9 @@ Route::get('/spotify','App\Http\Controllers\SpotifyController@getListenedSongs')
 Route::get('/onepiece/pricedata/{tcgid}','App\Http\Controllers\CardpriceController@onepiecePriceData');
 Route::get('/onepiece/addTcgcsvIds/{tcgid}','App\Http\Controllers\CardpriceController@onepieceAddTcgcsvId');
 
+//lets do some pokedata!
+Route::get('/pokemon/addTcgcsvIds/{tcgid_set_id}','App\Http\Controllers\CardpriceController@pokemonAddTcgcsvId');
+
 // attempting authentication
 Route::get('/dashboard','App\Http\Controllers\DashboardController@index', function () {})->middleware(['verified']);
 

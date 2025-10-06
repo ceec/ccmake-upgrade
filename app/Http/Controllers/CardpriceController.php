@@ -10,6 +10,8 @@ use App\Models\Onepiececardprice;
 use App\Models\Onepieceset;
 use App\Models\Onepieceusercard;
 use App\Models\Onepiececharacter;
+use App\Models\Pokemoncard;
+use App\Models\Pokemonset;
 use GuzzleHttp\Client;
 
 class CardpriceController extends Controller
@@ -138,6 +140,97 @@ class CardpriceController extends Controller
                                     $up = Onepiececard::find($card->id);
                                     $up->tcgcsv_id = $product->productId;
                                     $up->save();
+
+                                }
+                            }
+                        }
+
+
+                    }
+                }
+
+            } else {
+                // Handle non-200 status codes
+                return response()->json(['error' => 'Failed to fetch data', 'status' => $statusCode], $statusCode);
+            }
+        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
+            // Handle Guzzle exceptions (e.g., network errors, timeouts)
+            return response()->json(['error' => 'Failed to connect to the URL', 'message' => $e->getMessage()], 500);
+        }
+    }
+
+    /**
+     * Add in the tcgcsv id for pokemon
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pokemonAddTcgcsvId($tcgcsv_set_id){
+        // get info on the set
+        $client = new Client();
+        //pokeurl
+        // base set - https://tcgcsv.com/tcgplayer/3/604/products
+        $url = 'https://tcgcsv.com/tcgplayer/3/'.$tcgcsv_set_id.'/products'; // 604 - base set 
+
+        try {
+            $response = $client->request('GET', $url);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                $jsonContent = $response->getBody()->getContents();
+
+                $data = json_decode($jsonContent, false); // `true` for associative array, `false` for object
+
+                $products = $data->results;
+               
+                //loop through the data
+                foreach( $products as $product ) {
+                    // Only cards have extended data
+                    if (isset($product->extendedData[0]) && $product->extendedData[0]->name == 'Number' ) {
+
+                        $displayData['tcgcsv_id'] = $product->productId;
+                        $displayData['name'] = $product->name;
+                        $displayData['number'] = $product->extendedData[0]->value;
+                        $displayData['rarity'] = $product->extendedData[1]->value;
+
+                        // echo '<pre>';
+                        // print_r($displayData);
+                        // echo '</pre>';
+                        // echo '<hr>';
+
+                        if (isset($displayData['number'])) {
+                            
+                            // Look up the id
+                            $number = explode('/',$displayData['number']);
+
+                            $displayData['raw_card_number'] = $number[0];
+                            $displayData['card_number'] = (int) $number[0];
+                            //$displayData['total'] = $number[1];
+
+                            echo '<pre>';
+                            print_r($displayData);
+                            echo '</pre>';
+                            echo '<hr>';
+
+                            $set = Pokemonset::where('tcgcsv_id','=',$tcgcsv_set_id)->first();
+
+                            if (isset($set->id)) {
+                                // Handling multiple cards
+                                $card = Pokemoncard::where('set_id','=',$set->id)->where('set_number','=',$displayData['card_number'])
+                                        ->first();
+                                       
+                                        // echo '<pre>';
+                                        // print_r($card);
+                                        // echo '</pre>';
+
+                            
+                                //if ( isset($card->id) && ( $card->tcgcsv_id == 0 ) ) {
+                                if ( isset($card->id)  ) {
+                                    echo 'Adding tcgcsv_id: '. $product->productId.' for: '. $card->name. ' id: '.$card->id;
+                                    echo '<hr>';
+
+                                     $up = Pokemoncard::find($card->id);
+                                     $up->tcgcsv_id = $product->productId;
+                                     $up->save();
 
                                 }
                             }
