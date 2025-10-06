@@ -124,10 +124,15 @@ class PageController extends Controller
     public function pokemoncards(){
         $vintage = Pokemonset::where('generation_id','=',0)->orderBy('release_date','asc')->get();
 
+        $five = Pokemonset::where('generation_id','=','5')->get();
+        $six = Pokemonset::where('generation_id','=','6')->get();
+
         $modern = Pokemonset::where('generation_id','=',8)->orWhere('generation_id','=',9)->orderBy('release_date','asc')->get();
 
         return  view('pages.pokemoncards')
             ->with('vintage',$vintage)
+            ->with('five',$five)
+            ->with('six',$six)
             ->with('modern',$modern);
     }  
 
