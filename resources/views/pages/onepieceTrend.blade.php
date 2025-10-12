@@ -43,6 +43,14 @@ ccmakesthings
 .set-number {
 }
 
+.falling {
+    color: red;
+}
+
+.rising {
+    color: green;
+}
+
 </style>
 	<div class="container">
 <h2>Need</h2>
@@ -59,7 +67,7 @@ ccmakesthings
                 @else
                 <img class="card-image" src="/images/onepiece/{{$set->shortname}}/{{$set->imagenumber()}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
                 @endif
-                {{ $card->lastPrice()}}
+                {{ $card->lastPrice()}} (<span class="{{$card->trend}}"> {{$card->difference}}</span>)
                 <br>
             </div>
             @endforeach

@@ -37,10 +37,11 @@ class OnepieceController extends Controller
         ->with('cards',$cards);
     }
 
-    //card
-    // display a specific card
-
-
+    /**
+     * Need - display cards needed in that set
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function need($set) {
         $set = Onepieceset::where('url','=',$set)->first();
 
@@ -56,6 +57,49 @@ class OnepieceController extends Controller
         ->with('set',$set);
     }
 
+
+    /**
+     * Trends - price trends of the needed cards in that set
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function priceTrends($set) {
+        $set = Onepieceset::where('url','=',$set)->first();
+
+        if ( !Auth::guest() ) {
+            $usercards = Onepieceusercard::where('user_id','=',Auth::user()->id)->pluck('onepiececard_id')->toArray();
+            $cards = Onepiececard::where('set_id','=',$set->id)->whereNotIn('id',$usercards)->get();
+        } else {
+            $cards = Onepiececard::where('set_id','=',$set->id)->get();
+        }
+
+        foreach($cards as $card) {
+            $prices = Onepiececardprice::where('onepiececard_id','=',$card->id)->orderBy('created_at','DESC')->limit(7)->pluck('price','created_at')->toArray();
+            $keys = array_keys($prices);
+
+            if (isset($keys[7])) {
+                $difference = $prices[$keys[7]] - $prices[$keys[0]];
+                if ($difference > 0) {
+                    // the price is falling
+                    $trend = 'falling';
+                } else if ($difference < 0) {
+                    $trend = 'rising';
+                } else {
+                    $trend = 'flat';
+                }
+            } else {
+                $trend = 'nodata';
+                $difference = 0;
+            }
+
+            $card->trend = $trend;
+            $card->difference = $difference;
+        }
+
+        return view('pages.onepieceTrend')
+        ->with('cards',$cards)
+        ->with('set',$set);
+    }
 
     // character
     public function character($character_id) {

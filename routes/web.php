@@ -62,6 +62,7 @@ Route::get('/onepiece/need/{set}','App\Http\Controllers\OnepieceController@need'
 Route::get('/onepiece/set/{set}','App\Http\Controllers\OnepieceController@set');
 Route::get('/onepiece/set/{set_name}/{card_id}','App\Http\Controllers\OnepieceController@cardDisplay');
 Route::get('/onepiece/character/{character}','App\Http\Controllers\OnepieceController@character');
+Route::get('/onepiece/trends/{set}','App\Http\Controllers\OnepieceController@priceTrends');
 
 // music
 Route::get('/music2','App\Http\Controllers\MusicController@music');
