@@ -117,7 +117,7 @@ class PageController extends Controller
     }  
 
     /**
-     * Pokemon cards
+     * Pokemon cards - all sets
      *
      * @return \Illuminate\Http\Response
      */
@@ -135,6 +135,28 @@ class PageController extends Controller
             ->with('six',$six)
             ->with('modern',$modern);
     }  
+
+    /**
+     * Pokemon cards 
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pokemoncardsBySet(){
+        $vintage = Pokemonset::where('generation_id','=',0)->orderBy('release_date','asc')->get();
+        $five = Pokemonset::where('generation_id','=','5')->get();
+        $six = Pokemonset::where('generation_id','=','6')->get();
+        $swsh = Pokemonset::where('generation_id','=','8')->get();
+        $sv = Pokemonset::where('generation_id','=','9')->get();
+        $mega = Pokemonset::where('generation_id','=','10')->get();
+
+        return  view('pages.pokemonCardsBySet')
+            ->with('vintage',$vintage)
+            ->with('five',$five)
+            ->with('six',$six)
+            ->with('swsh',$swsh)
+            ->with('sv',$sv)
+            ->with('mega',$mega);
+    } 
 
     ///travel
      /**

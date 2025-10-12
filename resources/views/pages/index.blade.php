@@ -33,6 +33,12 @@ ccmakesthings
 			<a href="/pokemon">Pokemon</a>
 		</div>
 		<div>
+			<a href="/onepiece">One Piece</a>
+		</div>
+		<div>
+			<a href="/pokemon/all">Pokemon All</a>
+		</div>
+		<div>
 			<a href="/rocks">Rocks</a>
 		</div>
 		<div>
