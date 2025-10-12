@@ -52,11 +52,11 @@ ccmakesthings
             <span class="set-number">{{$card->set_number}}</span>  <a href="{{$set->url}}/{{$card->onepiececardid}}">{{$card->name}}</a><br>
             @if ($card->user_id)
                 @if ( $card->card_number == 1 )
-                    <img class="card-image" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}.png"><br>
+                    <img class="card-image" src="/images/onepiece/{{$set->shortname}}/{{$set->imagenumber()}}-{{$card->set_number}}.png"><br>
                 @elseif ( $card->original_set_id != 0 )
                     <img class="card-image" src="/images/onepiece/{{$card->set_url}}/{{$card->set_imagename}}-{{$card->original_set_number}}-{{$card->card_number}}.png"><br>
                 @else
-                    <img class="card-image" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
+                    <img class="card-image" src="/images/onepiece/{{$set->shortname}}/{{$set->imagenumber()}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
                 @endif
             @if ($card->price > 0.00)
                 ${{$card->price}}
@@ -75,11 +75,11 @@ ccmakesthings
                 </form>
                 @endif
                 @if ( $card->card_number == 1 )
-                <img class="card-image dont-have" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}.png"><br>
+                <img class="card-image dont-have" src="/images/onepiece/{{$set->shortname}}/{{$set->imagenumber()}}-{{$card->set_number}}.png"><br>
                 @elseif ( $card->original_set_id != 0 )
                 <img class="card-image dont-have" src="/images/onepiece/{{$card->set_url}}/{{$card->set_imagename}}-{{$card->original_set_number}}-{{$card->card_number}}.png"><br>
                 @else
-                <img class="card-image dont-have" src="/images/onepiece/{{$set->url}}/{{$set->imagenumber()}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
+                <img class="card-image dont-have" src="/images/onepiece/{{$set->shortname}}/{{$set->imagenumber()}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
                 @endif
             @endif
         </div>
