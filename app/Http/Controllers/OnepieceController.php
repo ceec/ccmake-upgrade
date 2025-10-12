@@ -92,7 +92,7 @@ class OnepieceController extends Controller
             }
 
             $card->trend = $trend;
-            $card->difference = $difference;
+            $card->difference = round(abs($difference),2);
         }
 
         return view('pages.onepieceTrend')
