@@ -92,6 +92,8 @@ Route::get('/onepiece/addTcgcsvIds/{tcgid}','App\Http\Controllers\CardpriceContr
 
 //lets do some pokedata!
 Route::get('/pokemon/addTcgcsvIds/{tcgid_set_id}','App\Http\Controllers\CardpriceController@pokemonAddTcgcsvId');
+Route::get('/pokemon/pricedata/{tcgid}','App\Http\Controllers\CardpriceController@pokemonPriceData');
+
 
 // attempting authentication
 Route::get('/dashboard','App\Http\Controllers\DashboardController@index', function () {})->middleware(['verified']);

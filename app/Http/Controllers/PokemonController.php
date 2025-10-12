@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Pokemoncard;
+use App\Models\Pokemoncardprice;
 use App\Models\Pokemonset;
 use App\Models\Pokemonusercard;
 
@@ -117,8 +118,11 @@ class PokemonController extends Controller
         $card = Pokemoncard::where('id','=',$pokemoncard_id)->first();
         // need to change if other users
         $usercards = Pokemonusercard::where('user_id','=',1)->where('pokemoncard_id','=',$pokemoncard_id)->get();
+        $prices = Pokemoncardprice::where('pokemoncard_id','=',$card->id)->orderBy('created_at','DESC')->get();
+
         return view('pages.pokemonCard')
             ->with('card',$card)
+            ->with('prices',$prices)
             ->with('usercards',$usercards)
             ->with('set',$set);
     }    

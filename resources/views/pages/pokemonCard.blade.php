@@ -28,7 +28,14 @@ ccmakesthings
         <div class="col-md-6">
             <h2>{{$card->name}}</h2>
             Set: <a href="/pokemon/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
-
+            <hr>
+            tcgcsv Id: {{$card->tcgcsv_id}}<br>
+            Latest Price: {{$card->lastPrice()}}<br>
+            Price history:<br>
+            @foreach($prices as $price)
+                {{$price->created_at}} - ${{$price->price}}<br>
+            @endforeach
+            
             @if (!Auth::guest())
                 @if (Auth::user()->id == 1)
                     <br><a href="/dashboard/pokemoncard/edit/{{$card->id}}">Edit Card</a><br><br>

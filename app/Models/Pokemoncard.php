@@ -17,4 +17,11 @@ class Pokemoncard extends Model
     {
         return $this->belongsTo(Pokemonusercard::class);
     }    
+
+    // Get the last price
+    public function lastPrice() {
+        $price = Pokemoncardprice::where('pokemoncard_id','=',$this->id)->orderBy('created_at','DESC')->pluck('price')->first();
+        return $price;
+    }   
+
 }

@@ -11,6 +11,7 @@ use App\Models\Onepieceset;
 use App\Models\Onepieceusercard;
 use App\Models\Onepiececharacter;
 use App\Models\Pokemoncard;
+use App\Models\Pokemoncardprice;
 use App\Models\Pokemonset;
 use GuzzleHttp\Client;
 
@@ -249,5 +250,51 @@ class CardpriceController extends Controller
             return response()->json(['error' => 'Failed to connect to the URL', 'message' => $e->getMessage()], 500);
         }
     }
+
+    /**
+     * Get the latest prices for pokemon cards
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pokemonPriceData($tcgcsv_id){
+        // get info on the set
+        $client = new Client();
+        $url = 'https://tcgcsv.com/tcgplayer/3/'.$tcgcsv_id.'/prices';
+
+        try {
+            $response = $client->request('GET', $url);
+            $statusCode = $response->getStatusCode();
+
+            if ($statusCode === 200) {
+                $jsonContent = $response->getBody()->getContents();
+                $data = json_decode($jsonContent, false); // `true` for associative array, `false` for object
+
+                $prices = $data->results;
+                //loop through the data
+                foreach( $prices as $price ) {
+                    echo '<pre>';
+                    print_r($price);
+                    echo '</pre>';
+                    echo '<hr>';
+                    $card = Pokemoncard::where('tcgcsv_id','=',$price->productId)->first();
+
+                    if (isset($card->id) && isset($price->marketPrice)) {
+                        $p = new Pokemoncardprice;
+                        $p->pokemoncard_id = $card->id;
+                        $p->price = $price->marketPrice;
+                        $p->save();
+                    }
+                }
+
+            } else {
+                // Handle non-200 status codes
+                return response()->json(['error' => 'Failed to fetch data', 'status' => $statusCode], $statusCode);
+            }
+        } catch (\GuzzleHttp\Exception\GuzzleException $e) {
+            // Handle Guzzle exceptions (e.g., network errors, timeouts)
+            return response()->json(['error' => 'Failed to connect to the URL', 'message' => $e->getMessage()], 500);
+        }
+    }
+
 
 }
