@@ -145,6 +145,7 @@ class PageController extends Controller
         $vintage = Pokemonset::where('generation_id','=',0)->orderBy('release_date','asc')->get();
         $five = Pokemonset::where('generation_id','=','5')->get();
         $six = Pokemonset::where('generation_id','=','6')->get();
+        $seven = Pokemonset::where('generation_id','=','7')->get();
         $swsh = Pokemonset::where('generation_id','=','8')->get();
         $sv = Pokemonset::where('generation_id','=','9')->get();
         $mega = Pokemonset::where('generation_id','=','10')->get();
@@ -153,6 +154,7 @@ class PageController extends Controller
             ->with('vintage',$vintage)
             ->with('five',$five)
             ->with('six',$six)
+            ->with('seven',$seven)
             ->with('swsh',$swsh)
             ->with('sv',$sv)
             ->with('mega',$mega);

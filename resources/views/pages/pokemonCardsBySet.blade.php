@@ -51,6 +51,16 @@ ccmakesthings
             @endforeach
         </div>
         <br><br>
+        <h2>Sun and Moon</h2>
+        <div class="row">
+            @foreach ($seven as $set)
+                <div class="col-md-3">
+                    <img src="/images/pokemon/seticons/{{$set->id}}.png" height="20px">
+                    <a href="/pokemon/set/{{$set->url}}">{{$set->name}}</a><br>
+                </div>
+            @endforeach
+        </div>
+        <br><br>
         <h2>Sword and Sheild</h2>
         <div class="row">
             @foreach ($swsh as $set)
@@ -73,7 +83,7 @@ ccmakesthings
         <br><br>
         <h2>Mega</h2>
         <div class="row">
-            @foreach ($six as $set)
+            @foreach ($mega as $set)
                 <div class="col-md-3">
                     <img src="/images/pokemon/seticons/{{$set->id}}.png" height="20px">
                     <a href="/pokemon/set/{{$set->url}}">{{$set->name}}</a><br>
