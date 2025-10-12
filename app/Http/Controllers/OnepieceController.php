@@ -76,9 +76,8 @@ class OnepieceController extends Controller
         foreach($cards as $card) {
             $prices = Onepiececardprice::where('onepiececard_id','=',$card->id)->orderBy('created_at','DESC')->limit(7)->pluck('price','created_at')->toArray();
             $keys = array_keys($prices);
-
-            if (isset($keys[7])) {
-                $difference = $prices[$keys[7]] - $prices[$keys[0]];
+            if (isset($keys[6])) {
+                $difference = $prices[$keys[6]] - $prices[$keys[0]];
                 if ($difference > 0) {
                     // the price is falling
                     $trend = 'falling';
