@@ -278,12 +278,18 @@ class CardpriceController extends Controller
                     echo '<hr>';
                     $card = Pokemoncard::where('tcgcsv_id','=',$price->productId)->first();
 
-                    if (isset($card->id) && isset($price->marketPrice)) {
-                        $p = new Pokemoncardprice;
-                        $p->pokemoncard_id = $card->id;
-                        $p->price = $price->marketPrice;
-                        $p->save();
+                    //need to ignore reverse holos
+                    if ($price->subTypeName != 'Reverse Holofoil') {
+                        if (isset($card->id) && isset($price->marketPrice) ) {
+                            $p = new Pokemoncardprice;
+                            $p->pokemoncard_id = $card->id;
+                            $p->price = $price->marketPrice;
+                            $p->save();
+                        }
                     }
+
+
+
                 }
 
             } else {
