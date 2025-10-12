@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-
+use Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
@@ -18,15 +18,25 @@ class Pokemonset extends Model
     }
 
     public function cardsneeded() {
-        $cards = Pokemoncard::where('set_id','=',$this->id)->get();
+        // $cards = Pokemoncard::where('set_id','=',$this->id)->get();
 
-        // WOO it works, get all the cards I dont have in the set
-        $cards = DB::table('pokemoncards')
-        ->where('set_id','=',$this->id)
-        ->whereNotIn('id',DB::table('pokemoncards')->where('set_id','=',$this->id)->join('pokemonusercards', 'pokemoncards.id', '=', 'pokemonusercards.pokemoncard_id')->pluck('pokemoncards.id'))
-        ->get();
+        // // WOO it works, get all the cards I dont have in the set
+        // $cards = DB::table('pokemoncards')
+        // ->where('set_id','=',$this->id)
+        // ->whereNotIn('id',DB::table('pokemoncards')->where('set_id','=',$this->id)->join('pokemonusercards', 'pokemoncards.id', '=', 'pokemonusercards.pokemoncard_id')->pluck('pokemoncards.id'))
+        // ->get();
+
+        // return $cards;
+
+        if ( !Auth::guest() ) {
+            $usercards = Pokemonusercard::where('user_id','=',Auth::user()->id)->pluck('pokemoncard_id')->toArray();
+            $cards = Pokemoncard::whereNotIn('id',$usercards)->where('set_id','=',$this->id)->get();
+        } else {
+            $cards = Pokemoncard::where('set_id','=',$this->id)->get();
+        }
 
         return $cards;
+
     }
 
     public function totalcards() {
