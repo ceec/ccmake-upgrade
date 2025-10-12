@@ -22,7 +22,7 @@ class Onepieceset extends Model
         //moving this up to the controller
         if ( !Auth::guest() ) {
             $usercards = Onepieceusercard::where('user_id','=',Auth::user()->id)->pluck('onepiececard_id')->toArray();
-            $cards = Onepiececard::whereNotIn('id',$usercards)->get();
+            $cards = Onepiececard::whereNotIn('id',$usercards)->where('set_id','=',$this->id)->get();
         } else {
             $cards = Onepiececard::where('set_id','=',$this->id)->get();
         }

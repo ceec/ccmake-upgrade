@@ -45,7 +45,7 @@ ccmakesthings
 
 </style>
 	<div class="container">
-<h2><a href="/onepiece">Sets</a> > {{$set->name}}</h2>
+        <h2><a href="/onepiece">Sets</a> > <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a> | <a href="/onepiece/need/{{$set->url}}">Need</a></h2>
 <div class="cards">
     @foreach ($cards as $card)
         <div id="{{$card->onepiececardid}}">
