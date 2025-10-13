@@ -63,6 +63,7 @@ Route::get('/onepiece/set/{set}','App\Http\Controllers\OnepieceController@set');
 Route::get('/onepiece/set/{set_name}/{card_id}','App\Http\Controllers\OnepieceController@cardDisplay');
 Route::get('/onepiece/character/{character}','App\Http\Controllers\OnepieceController@character');
 Route::get('/onepiece/trends/{set}','App\Http\Controllers\OnepieceController@priceTrends');
+Route::get('/onepiece/hunt','App\Http\Controllers\OnepieceController@hunt');
 
 // music
 Route::get('/music2','App\Http\Controllers\MusicController@music');
@@ -139,6 +140,8 @@ Route::post('/edit/onepiececharacter','App\Http\Controllers\OnepieceController@e
 // One Piece User Cards
 Route::post('/add/onepieceusercard','App\Http\Controllers\OnepieceController@addUserCard', function () {})->middleware(['verified']);
 Route::post('/edit/onepieceusercard','App\Http\Controllers\OnepieceController@editUserCard', function () {})->middleware(['verified']);
+// hunts
+Route::post('/add/onepiececardhunt','App\Http\Controllers\OnepieceController@addCardHunt', function () {})->middleware(['verified']);
 
 
 // Pokemon

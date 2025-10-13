@@ -6,6 +6,7 @@ use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Onepiececard;
+use App\Models\Onepiececardhunt;
 use App\Models\Onepiececardprice;
 use App\Models\Onepieceset;
 use App\Models\Onepieceusercard;
@@ -57,6 +58,23 @@ class OnepieceController extends Controller
         ->with('set',$set);
     }
 
+        /**
+     * Hunt - display cards in the hunt list
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function hunt() {
+        if ( !Auth::guest() ) {
+            $userhunts = Onepiececardhunt::where('user_id','=',Auth::user()->id)->pluck('onepiececard_id')->toArray();
+            $cards = Onepiececard::whereIn('id',$userhunts)->get();
+        } else {
+            // this should just be moved to a user dashboard type thing
+            $cards = Onepiececard::where('set_id','=',1)->get();
+        }
+
+        return view('pages.onepiecehunt')
+        ->with('cards',$cards);
+    }
 
     /**
      * Trends - price trends of the needed cards in that set
@@ -293,6 +311,24 @@ class OnepieceController extends Controller
    
         return redirect('/dashboard/onepiececard/edit/'.$card_id);       
     } 
+
+    /**
+     * Add one peice card hunt
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addCardHunt(Request $request) {
+        $b = new Onepiececardhunt;
+        $b->user_id = $request->input('user_id');
+        $b->onepiececard_id = $request->input('onepiececard_id');
+        $b->save();
+
+        $url = Onepieceset::where('id','=',$request->input('set_id'))->first();
+
+
+        return redirect('/onepiece/set/'.$url->url.'/#'.$request->input('onepiececard_id'));          
+    }
+
 
     /**
      * Add set  UI

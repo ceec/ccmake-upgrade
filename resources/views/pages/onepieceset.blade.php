@@ -64,15 +64,26 @@ ccmakesthings
             {{$card->source}}
             @else
                 @if (!Auth::guest())
-                <form method="POST" action="/add/onepieceusercard">
-                    @csrf
-                    <input type="hidden" name="user_id" value="1" />
-                    <input type="hidden" name="set_id" value={{$card->set_id}} />
-                    <input type="hidden" name="onepiececard_id" value={{$card->onepiececardid}} />     
-                    <button type="submit">
-                        Add
-                    </button>
-                </form>
+                <div>
+                    <form method="POST" action="/add/onepieceusercard">
+                        @csrf
+                        <input type="hidden" name="user_id" value="1" />
+                        <input type="hidden" name="set_id" value={{$card->set_id}} />
+                        <input type="hidden" name="onepiececard_id" value={{$card->onepiececardid}} />     
+                        <button type="submit" class="pull-left">
+                            Add
+                        </button>
+                    </form>
+                    <form method="POST" action="/add/onepiececardhunt">
+                        @csrf
+                        <input type="hidden" name="user_id" value="1" />
+                        <input type="hidden" name="set_id" value={{$card->set_id}} />
+                        <input type="hidden" name="onepiececard_id" value={{$card->onepiececardid}} />     
+                        <button type="submit" class="pull-right">
+                            Hunt
+                        </button>
+                    </form>
+                </div>
                 @endif
                 @if ( $card->card_number == 1 )
                 <img class="card-image dont-have" src="/images/onepiece/{{$set->shortname}}/{{$set->imagenumber()}}-{{$card->set_number}}.png"><br>

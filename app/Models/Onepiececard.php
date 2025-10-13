@@ -32,4 +32,32 @@ class Onepiececard extends Model
         return $price;
     }    
 
+    // Get the last weeks price fluxuation
+    public function priceTrend() {
+        $prices = Onepiececardprice::where('onepiececard_id','=',$this->id)->orderBy('created_at','DESC')->limit(7)->pluck('price','created_at')->toArray();
+        $keys = array_keys($prices);
+        if (isset($keys[6])) {
+            $difference = $prices[$keys[6]] - $prices[$keys[0]];
+            if ($difference > 0) {
+                // the price is falling
+                $trend = 'falling';
+            } else if ($difference < 0) {
+                $trend = 'rising';
+            } else {
+                $trend = 'flat';
+            }
+        } else {
+            $trend = 'nodata';
+            $difference = 0;
+        }
+
+        $difference = round(abs($difference),2);
+        $priceDisplay = '<span class="'.$trend.'">'.$difference.'</span>';
+        return $priceDisplay;
+    }
+
+    public function set(): BelongsTo {
+        return $this->belongsTo(Onepieceset::class);
+    }
+
 }
