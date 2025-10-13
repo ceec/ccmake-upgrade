@@ -60,4 +60,8 @@ class Onepiececard extends Model
         return $this->belongsTo(Onepieceset::class);
     }
 
+    public function original_set(): BelongsTo {
+        return $this->belongsTo(Onepieceset::class);
+    }   
+
 }

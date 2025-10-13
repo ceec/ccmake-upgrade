@@ -60,11 +60,11 @@ ccmakesthings
             <div>
                 <span class="set-number">{{$card->set_number}}</span>  <a href="/onepiece/set/{{$card->set->url}}/{{$card->id}}">{{$card->name}}</a><br>
                 @if ( $card->card_number == 1 )
-                <img class="card-image" src="/images/onepiece/{{$card->set->shortname}}/{{$card->set->imagenumber()}}-{{$card->set_number}}.png"><br>
+                <img class="card-image" src="/images/onepiece/{{$card->set->shortname}}/{{$card->set->imagename}}-{{$card->set_number}}.png"><br>
                 @elseif ( $card->original_set_id != 0 )
-                <img class="card-image" src="/images/onepiece/{{$card->set_url}}/{{$card->set_imagename}}-{{$card->original_set_number}}-{{$card->card_number}}.png"><br>
+                <img class="card-image" src="/images/onepiece/{{$card->original_set->shortname}}/{{$card->original_set->imagename}}-{{$card->original_set_number}}-{{$card->card_number}}.png"><br>
                 @else
-                <img class="card-image" src="/images/onepiece/{{$card->set->shortname}}/{{$card->set->imagenumber()}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
+                <img class="card-image" src="/images/onepiece/{{$card->set->shortname}}/{{$card->set->imagename}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
                 @endif
                 {{ $card->lastPrice()}} ({!! $card->priceTrend() !!})
                 <br>
