@@ -72,7 +72,7 @@ class OnepieceController extends Controller
             $cards = Onepiececard::where('set_id','=',1)->get();
         }
 
-        return view('pages.onepiecehunt')
+        return view('pages.onepieceHunt')
         ->with('cards',$cards);
     }
 
