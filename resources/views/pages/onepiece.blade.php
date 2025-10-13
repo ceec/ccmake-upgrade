@@ -25,10 +25,6 @@ ccmakesthings
     @foreach ($sets as $set)
 		{{$set->shortname}} - {{$set->totalhavecards()}}/{{$set->totalcards()}} - <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a><br>
     @endforeach
-<h2>need</h2>
-	@foreach ($sets as $set)
-		{{$set->shortname}} - {{$set->totalneedcards()}}/{{$set->totalcards()}} - <a href="/onepiece/need/{{$set->url}}">{{$set->name}}</a><br>
-	@endforeach
 </div>
 
 @endsection
