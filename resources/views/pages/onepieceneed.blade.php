@@ -43,11 +43,19 @@ ccmakesthings
 .set-number {
 }
 
+.falling {
+    color: red;
+}
+
+.rising {
+    color: green;
+}
+
 </style>
 	<div class="container">
 <h2>Need</h2>
 <div>
-    <h2><a href="/onepiece">Sets</a> > <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a> | <a href="/onepiece/need/{{$set->url}}">Need</a> | <a href="/onepiece/trends/{{$set->url}}">Trends</a></h2>
+    <h2><a href="/onepiece">Sets</a> > <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a> | <a href="/onepiece/need/{{$set->url}}">Need</a></h2>
         <div class="cards">
             @foreach ($cards as $card)
             <div>
@@ -59,7 +67,7 @@ ccmakesthings
                 @else
                 <img class="card-image" src="/images/onepiece/{{$set->shortname}}/{{$set->imagename}}-{{$card->set_number}}-{{$card->card_number}}.png"><br>
                 @endif
-                {{ $card->lastPrice()}}
+                {{ $card->lastPrice()}} ({!! $card->priceTrend() !!})
                 <br>
             </div>
             @endforeach
