@@ -279,7 +279,8 @@ class CardpriceController extends Controller
                     $card = Pokemoncard::where('tcgcsv_id','=',$price->productId)->first();
 
                     //need to ignore reverse holos
-                    if ($price->subTypeName != 'Reverse Holofoil') {
+                    // and first edition
+                    if ($price->subTypeName != 'Reverse Holofoil' || $price->subTypeName != '1st Edition Holofoil') {
                         if (isset($card->id) && isset($price->marketPrice) ) {
                             $p = new Pokemoncardprice;
                             $p->pokemoncard_id = $card->id;
