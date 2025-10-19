@@ -43,6 +43,14 @@ ccmakesthings
 .set-number {
 }
 
+.falling {
+    color: red;
+}
+
+.rising {
+    color: green;
+}
+
 </style>
 	<div class="container">
 <h2>Need</h2>
@@ -51,13 +59,13 @@ ccmakesthings
         <div class="cards">
             @foreach ($set->cardsneeded() as $card)
             <div>
-                <span class="set-number">{{$card->set_number}}</span> <a href="/pokemon/{{$card->pokemon_id}}">{{$card->name}}</a><br>
+                <span class="set-number">{{$card->set_number}}</span> <a href="/pokemon/set/{{$card->set->url}}/{{$card->id}}">{{$card->name}}</a><br>
                 @if ($card->set_id == 98 || $card->set_id == 109 || $card->set_id == 118 || $card->set_id == 119 || $card->set_id > 120)
                 <img class="card-image" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.png"><br>
                 @else
                 <img class="card-image" src="/images/pokemon/{{$set->url}}/{{$card->set_number}}.jpg"><br>
                 @endif
-                {{ $card->lastPrice()}}
+                {{ $card->lastPrice()}} ({!! $card->priceTrend() !!})
             </div>
             @endforeach
         </div>
