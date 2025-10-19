@@ -280,7 +280,8 @@ class CardpriceController extends Controller
 
                     //need to ignore reverse holos
                     // and first edition
-                    if ($price->subTypeName != 'Reverse Holofoil' || $price->subTypeName != '1st Edition Holofoil') {
+                    if ($price->subTypeName != 'Reverse Holofoil' && $price->subTypeName != '1st Edition Holofoil' && $price->subTypeName != '1st Edition') {
+                        echo '<br>'.$price->subTypeName;
                         if (isset($card->id) && isset($price->marketPrice) ) {
                             $p = new Pokemoncardprice;
                             $p->pokemoncard_id = $card->id;
