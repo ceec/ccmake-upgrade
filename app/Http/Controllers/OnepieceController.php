@@ -65,7 +65,11 @@ class OnepieceController extends Controller
      */
     public function hunt() {
         if ( !Auth::guest() ) {
-            $userhunts = Onepiececardhunt::where('user_id','=',Auth::user()->id)->pluck('onepiececard_id')->toArray();
+            // TODO: have it remove from hunt when added to db
+            $userhunts = Onepiececardhunt::where('onepiececardhunts.user_id','=',Auth::user()->id)
+                ->leftJoin('onepieceusercards','onepieceusercards.onepiececard_id','=','onepiececardhunts.onepiececard_id')
+                ->whereNull('onepieceusercards.onepiececard_id')
+                ->pluck('onepiececardhunts.onepiececard_id')->toArray();
             $cards = Onepiececard::whereIn('id',$userhunts)->get();
         } else {
             // this should just be moved to a user dashboard type thing
