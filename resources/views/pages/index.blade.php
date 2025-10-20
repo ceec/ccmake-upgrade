@@ -30,15 +30,16 @@ ccmakesthings
 <div class="container">
 	<div class="square">
 		<div>
-			<a href="/pokemon">Pokemon</a>
-		</div>
-		<div>
-			<a href="/onepiece">One Piece</a>
-		</div>
-		<div>
+			<a href="/pokemon">Pokemon</a><br><br>
 			<a href="/pokemon/all">Pokemon All</a>
 		</div>
 		<div>
+			<a href="/onepiece">One Piece</a><br><br>
+			<a href="/onepiece/hunt">One Piece Hunt</a>
+		</div>
+	</div>
+	<hr>
+	<div>
 			<a href="/rocks">Rocks</a>
 		</div>
 		<div>
@@ -47,6 +48,5 @@ ccmakesthings
 		<div>
 		Flights
 		</div>
-	</div>
 </div>
 @endsection
