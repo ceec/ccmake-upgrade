@@ -125,24 +125,39 @@ class CardpriceController extends Controller
                                 // Hody Jones (020)
                                 // Hody Jones (020) (Alternate Art)
                                 // lets just update the names
-                                $card = Onepiececard::where('set_id','=',$set->id)->where('set_number','=',$cardId[1])
+
+                                // okay issue with prbs, names are the same as the original for the alt arts
+                                // PRB-01:23496
+                                // Maybe I should tie the tcgcsv to the set like in pokemon
+                                if ($tcgcsv_id == '23496') {
+                                    
+                                    $actualset = Onepieceset::where('shortname','=','PRB-01')->first();
+                                    // where set_id=10 AND original_set_id=1 AND original_set_number = 024
+                                    $card = Onepiececard::where('set_id','=',$actualset->id)->where('original_set_id','=',$set->id)
+                                        ->where('original_set_number','=',$cardId[1])
                                         ->where('name','=',$displayData['name'])->first();
-                                       
-                                        // echo '<pre>';
-                                        // print_r($card);
-                                        // echo '</pre>';
-
-                            
-                                //if ( isset($card->id) && ( $card->tcgcsv_id == 0 ) ) {
-                                if ( isset($card->id)  ) {
-                                    echo 'Adding tcgcsv_id: '. $product->productId.' for: '. $card->name. ' id: '.$card->id;
-                                    echo '<hr>';
-
-                                    $up = Onepiececard::find($card->id);
-                                    $up->tcgcsv_id = $product->productId;
-                                    $up->save();
-
+                                } else {
+                                    $card = Onepiececard::where('set_id','=',$set->id)->where('set_number','=',$cardId[1])
+                                        ->where('name','=',$displayData['name'])->first();
                                 }
+                                
+
+                                if ( isset($card->id) ) {
+                                    // Don't update if one's already there
+                                    if ($card->tcgcsv_id == 0) {
+                                        echo 'Adding tcgcsv_id: '. $product->productId.' for: '. $card->name. ' id: '.$card->id;
+                                        echo '<hr>';
+
+                                        $up = Onepiececard::find($card->id);
+                                        $up->tcgcsv_id = $product->productId;
+                                        $up->save();
+
+                                    } else {
+                                        echo 'Already there tcgcsv_id: '. $product->productId.' for: '. $card->name. ' id: '.$card->id;
+                                        echo '<hr>'; 
+                                    }
+
+                                } 
                             }
                         }
 
