@@ -31,7 +31,7 @@ ccmakesthings
             <h2>{{$card->name}}</h2>
             Set: <a href="/onepiece/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
             <hr>
-            tcgcsv Id: {{$card->tcgcsv_id}}<br>
+            tcgcsv Id: <a href="https://www.tcgplayer.com/product/{{$card->tcgcsv_id}}?Language=English">{{$card->tcgcsv_id}}</a><br>
             Latest Price: {{$card->lastPrice()}}<br>
             Price history:<br>
             @foreach($prices as $price)
