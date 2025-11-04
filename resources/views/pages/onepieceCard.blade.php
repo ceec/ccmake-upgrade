@@ -122,6 +122,14 @@ ccmakesthings
             dateFormat: "yyyy-MM-dd H:m:s"
             });
 
+            series.bullets.push(function() {
+            return am5.Bullet.new(root, {
+            sprite: am5.Circle.new(root, {
+                radius: 3,
+                fill: series.get("fill")
+            })
+            });
+        });
 
             series.data.setAll(test);
 
