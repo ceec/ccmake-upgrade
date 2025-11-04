@@ -94,7 +94,8 @@ ccmakesthings
             var yAxis = chart.yAxes.push(am5xy.ValueAxis.new(root, {
             renderer: am5xy.AxisRendererY.new(root, {
                 pan:"zoom"
-            })  
+            }),
+            tooltip: am5.Tooltip.new(root, {})
             }));
 
 
@@ -110,6 +111,7 @@ ccmakesthings
                 labelText: "{valueY}"
             })
             }));
+
 
             var test = [];
             @foreach($prices as $price)
