@@ -33,10 +33,6 @@ ccmakesthings
             <hr>
             tcgcsv Id: <a href="https://www.tcgplayer.com/product/{{$card->tcgcsv_id}}?Language=English">{{$card->tcgcsv_id}}</a><br>
             Latest Price: {{$card->lastPrice()}}<br>
-            Price history:<br>
-            @foreach($prices as $price)
-                {{$price->created_at}} - ${{$price->price}}<br>
-            @endforeach
             <style>
                 #chartdiv {
                 width: 100%;
