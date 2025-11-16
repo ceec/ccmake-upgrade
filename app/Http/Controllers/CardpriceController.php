@@ -48,7 +48,7 @@ class CardpriceController extends Controller
                     if (isset($card->id)) {
                         $p = new Onepiececardprice;
                         $p->onepiececard_id = $card->id;
-                        $p->price = $price->marketPrice;
+                        $p->price = $price->marketPrice ?? 0;
                         $p->save();
                     }
                 }
