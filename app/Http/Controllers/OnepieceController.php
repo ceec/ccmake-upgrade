@@ -133,7 +133,7 @@ class OnepieceController extends Controller
         $cards = DB::table('onepiececards')
         ->where('character_id','=',$character->id)
         ->select('onepiececards.*','onepieceusercards.*','set.shortname as set_url',
-                    'set.imagename as set_imagename','onepiececards.id as onepiececardid',
+                    'set.imagename as set_imagename','set.url as set_full_name','onepiececards.id as onepiececardid',
                     'original_set.shortname as original_set_url','original_set.imagename as original_set_imagename')
         ->leftJoin('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')
         ->leftJoin('onepiecesets as set','onepiececards.set_id','=','set.id')

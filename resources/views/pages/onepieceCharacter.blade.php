@@ -45,11 +45,11 @@ ccmakesthings
 
 </style>
 	<div class="container">
-        <h2><a href="/onepiece">Sets</a> > <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a> | <a href="/onepiece/need/{{$set->url}}">Need</a></h2>
+        <h2><a href="/onepiece">Sets</a> > {{$set->name}}</h2>
 <div class="cards">
     @foreach ($cards as $card)
         <div id="{{$card->onepiececardid}}">
-            <span class="set-number">{{$card->set_number}}</span>  <a href="{{$set->url}}/{{$card->onepiececardid}}">{{$card->name}}</a><br>
+            <span class="set-number">{{$card->set_imagename}}-{{$card->set_number}}</span>  <a href="/onepiece/set/{{$card->set_full_name}}/{{$card->onepiececardid}}">{{$card->name}}</a><br>
             @if ($card->user_id)
                 @if ( $card->card_number == 1 )
                     <img class="card-image" src="/images/onepiece/{{$card->set_url}}/{{$card->set_imagename}}-{{$card->set_number}}.png"><br>
