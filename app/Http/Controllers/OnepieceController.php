@@ -131,11 +131,17 @@ class OnepieceController extends Controller
         $character = Onepiececharacter::where('id','=',$character_id)->first();
 
         $cards = DB::table('onepiececards')
-        ->where('character_id','=',$character_id)
+        ->where('character_id','=',$character->id)
+        ->select('onepiececards.*','onepieceusercards.*','set.shortname as set_url',
+                    'set.imagename as set_imagename','onepiececards.id as onepiececardid',
+                    'original_set.shortname as original_set_url','original_set.imagename as original_set_imagename')
         ->leftJoin('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')
+        ->leftJoin('onepiecesets as set','onepiececards.set_id','=','set.id')
+        ->leftJoin('onepiecesets as original_set','onepiececards.originaL_set_id','=','original_set.id')
         ->get();
 
-        return view('pages.onepieceset')
+        return view('pages.onepieceCharacter')
+        ->with('character',$character)
         ->with('set',$character)
         ->with('cards',$cards);
     }

@@ -56,6 +56,12 @@ class Onepiececard extends Model
         return $priceDisplay;
     }
 
+    public function getSetShortname() {
+        $set = Onepieceset::where('id','=',$this->set_id);
+
+        return $set->imagename;
+    }
+
     public function set(): BelongsTo {
         return $this->belongsTo(Onepieceset::class);
     }
@@ -63,5 +69,9 @@ class Onepiececard extends Model
     public function original_set(): BelongsTo {
         return $this->belongsTo(Onepieceset::class);
     }   
+
+    public function character(): BelongsTo {
+        return $this->belongsTo(Onepiececharacter::class);
+    }
 
 }

@@ -30,6 +30,7 @@ ccmakesthings
         <div class="col-md-6">
             <h2>{{$card->name}}</h2>
             Set: <a href="/onepiece/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
+            Character: <a href="/onepiece/character/{{$card->character->id}}">{{$card->character->name}}</a><br><br>
             <hr>
             tcgcsv Id: <a href="https://www.tcgplayer.com/product/{{$card->tcgcsv_id}}?Language=English">{{$card->tcgcsv_id}}</a><br>
             Latest Price: {{$card->lastPrice()}}<br>
