@@ -113,16 +113,18 @@ class PageController extends Controller
         // main sets
         $mainsets = Onepieceset::where('shortname','LIKE','OP%')
                                     ->orWhere('shortname','LIKE','PRB%')
-                                    ->orWhere('shortname','LIKE','EB%')->get();
+                                    ->orWhere('shortname','LIKE','EB%')
+                                    ->orderBy('release_date','asc')->get();
 
         // starter decks
-        $starterdecks = Onepieceset::where('shortname','LIKE','ST%')->get();
+        $starterdecks = Onepieceset::where('shortname','LIKE','ST%')->orderBy('release_date','asc')->get();
 
         // other
         $other = Onepieceset::where('shortname','NOT LIKE','OP%')
                                 ->where('shortname','NOT LIKE','PRB%')
                                 ->where('shortname','NOT LIKE','EB%')
-                                ->where('shortname','NOT LIKE','ST%')->get();
+                                ->where('shortname','NOT LIKE','ST%')
+                                ->orderBy('release_date','asc')->get();
 
         return  view('pages.onepiece')
             ->with('other',$other)
