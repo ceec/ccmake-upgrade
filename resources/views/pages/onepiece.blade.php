@@ -28,13 +28,13 @@ ccmakesthings
 					{{$set->shortname}} - {{$set->totalhavecards()}}/{{$set->totalcards()}} - <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a><br>
 				@endforeach
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<h2>Other stuff</h2>
 				@foreach ($other as $set)
 					{{$set->shortname}} - {{$set->totalhavecards()}}/{{$set->totalcards()}} - <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a><br>
 				@endforeach
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-2">
 				<h2>Starter Decks</h2>
 				@foreach ($starterdecks as $set)
 					{{$set->shortname}} - {{$set->totalhavecards()}}/{{$set->totalcards()}} - <a href="/onepiece/set/{{$set->url}}">{{$set->name}}</a><br>
