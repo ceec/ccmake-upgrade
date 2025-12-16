@@ -110,10 +110,24 @@ class PageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function onepiece(){
-        $sets = Onepieceset::get();
+        // main sets
+        $mainsets = Onepieceset::where('shortname','LIKE','OP%')
+                                    ->orWhere('shortname','LIKE','PRB%')
+                                    ->orWhere('shortname','LIKE','EB%')->get();
+
+        // starter decks
+        $starterdecks = Onepieceset::where('shortname','LIKE','ST%')->get();
+
+        // other
+        $other = Onepieceset::where('shortname','NOT LIKE','OP%')
+                                ->where('shortname','NOT LIKE','PRB%')
+                                ->where('shortname','NOT LIKE','EB%')
+                                ->where('shortname','NOT LIKE','ST%')->get();
 
         return  view('pages.onepiece')
-            ->with('sets',$sets);
+            ->with('other',$other)
+            ->with('starterdecks',$starterdecks)
+            ->with('mainsets',$mainsets);
     }  
 
     /**
