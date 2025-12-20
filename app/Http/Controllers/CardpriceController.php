@@ -110,6 +110,11 @@ class CardpriceController extends Controller
                             // Look up the id
                             $cardId = explode('-',$setId);
 
+                            // handle no card number (Release Luffy is just P)
+                            if (!isset($cardId[1])) {
+                                $cardId[1] = '001';
+                            }
+
                             //$displayData['set'] = $cardId[0];
                             //$displayData['cardNumber'] = $cardId[1];
 
