@@ -96,6 +96,9 @@ Route::get('/onepiece/addTcgcsvIds/{tcgid}','App\Http\Controllers\CardpriceContr
 Route::get('/pokemon/addTcgcsvIds/{tcgid_set_id}','App\Http\Controllers\CardpriceController@pokemonAddTcgcsvId');
 Route::get('/pokemon/pricedata/{tcgid}','App\Http\Controllers\CardpriceController@pokemonPriceData');
 
+// Weather data
+Route::get('/weather/getdata','App\Http\Controllers\WeatherController@getData');
+
 
 // attempting authentication
 Route::get('/dashboard','App\Http\Controllers\DashboardController@index', function () {})->middleware(['verified']);
