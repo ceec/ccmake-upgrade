@@ -98,6 +98,8 @@ Route::get('/pokemon/pricedata/{tcgid}','App\Http\Controllers\CardpriceControlle
 
 // Weather data
 Route::get('/weather/getdata','App\Http\Controllers\WeatherController@getData');
+// mileabeach
+Route::get('/weather/mileabeach','App\Http\Controllers\WeatherController@showMileaBeach');
 
 
 // attempting authentication

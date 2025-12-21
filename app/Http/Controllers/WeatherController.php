@@ -48,4 +48,12 @@ class WeatherController extends Controller {
   
       }
 
+
+      public function showMileaBeach() {
+        $weather = Weather::orderBy('created_at','desc')->first();
+
+        return  view('pages.mileaBeach')
+        ->with('weather',$weather);
+      }
+
 }
