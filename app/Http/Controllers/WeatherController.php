@@ -56,4 +56,11 @@ class WeatherController extends Controller {
         ->with('weather',$weather);
       }
 
+      // lul getting data from myself
+      public function getLatestData() {
+        $weather = Weather::orderBy('created_at','desc')->first();
+
+        echo $weather;
+      }
+
 }
