@@ -124,7 +124,7 @@ class PageController extends Controller
                                 ->where('shortname','NOT LIKE','PRB%')
                                 ->where('shortname','NOT LIKE','EB%')
                                 ->where('shortname','NOT LIKE','ST%')
-                                ->orderBy('release_date','asc')->get();
+                                ->orderBy('shortname','asc')->get();
 
         return  view('pages.onepiece')
             ->with('other',$other)
