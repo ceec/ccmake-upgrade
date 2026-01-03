@@ -122,6 +122,21 @@ class OnepieceController extends Controller
         ->with('set',$set);
     }
 
+    // characters
+    public function characters() {
+        // ok figuring out cards I need
+        // have list of all the cards in the set, then have my list of cards in the set, so i can do one
+        // of those sql things thats like exclude
+        // so want all of pokmeoncards where set = set
+        $characters = Onepiececharacter::orderBy('name','ASC')->get();
+        $favids = [2,15,13,1,4];
+        $favs = Onepiececharacter::whereIn('id',$favids)->get();
+
+        return view('pages.onepieceCharacters')
+        ->with('favs',$favs)
+        ->with('characters',$characters);
+    }
+
     // character
     public function character($character_id) {
         // ok figuring out cards I need

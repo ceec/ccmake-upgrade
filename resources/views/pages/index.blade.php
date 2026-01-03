@@ -35,7 +35,9 @@ ccmakesthings
 		</div>
 		<div>
 			<a href="/onepiece">One Piece</a><br><br>
-			<a href="/onepiece/hunt">One Piece Hunt</a>
+			<a href="/onepiece/hunt">One Piece Hunt</a><br><br>
+			<a href="/onepiece/characters">One Piece Characters</a>
+			
 		</div>
 	</div>
 	<hr>
