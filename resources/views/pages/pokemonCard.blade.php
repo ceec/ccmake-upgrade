@@ -29,7 +29,7 @@ ccmakesthings
             <h2>{{$card->name}}</h2>
             Set: <a href="/pokemon/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
             <hr>
-            tcgcsv Id: <a href="https://www.tcgplayer.com/product/{{$card->tcgcsv_id}}?Language=English">{{$card->tcgcsv_id}}</a><br>
+            tcgcsv Id: <a href="https://www.tcgplayer.com/product/{{$card->tcgcsv_id}}?Language=English" target="_blank">{{$card->tcgcsv_id}}</a><br>
             Latest Price: {{$card->lastPrice()}}<br>
             Price history:<br>
             @foreach($prices as $price)
