@@ -29,8 +29,16 @@
               </select>
             </div>
             <div class="form-group">
+            <div class="form-group">
+              <label for="started-at">Name</label>
+                <input
+                  id="charactername"
+                  type="text"
+                  name="name"
+                />
+            </div>   
               <label for="character">Character</label>
-              <select name="character_id">
+              <select id="character-id" name="character_id">
                 @foreach ($characters as $id => $name)
                     <option value="{{ $id }}">
                         {{ $name }}
@@ -38,13 +46,6 @@
                 @endforeach
               </select>
             </div>            
-            <div class="form-group">
-              <label for="started-at">Name</label>
-                <input
-                  type="text"
-                  name="name"
-                />
-            </div>   
             <div class="form-group">
               <label for="completed-at">Set Number</label>
               <input
@@ -90,5 +91,18 @@
 
 </div>
 
+<script>
+$(document).ready(function() {
+  $('#charactername').on('input', function() {
+    console.log('here');
+    // Get the pasted/typed value and trim whitespace
+    var val = $(this).val().trim();
 
+    // Find the option that matches the text 
+    $('#character-id option').filter(function() {
+      return $(this).text().trim().toLowerCase() === val.toLowerCase();
+    }).prop('selected', true);
+  });
+});
+  </script>
 @endsection
