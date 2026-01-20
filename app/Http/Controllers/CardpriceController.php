@@ -162,7 +162,14 @@ class CardpriceController extends Controller
                                         echo '<hr>'; 
                                     }
 
-                                } 
+                                } else {
+                                    // promos and such that aren't in the set
+                                    $card = Onepiececard::where('tcgcsv_id','=',$displayData['tcgcsv_id'])->first();
+                                    if ( isset($card->id) ) {
+                                        echo 'Already there tcgcsv_id: '. $product->productId.' for: '. $card->name. ' id: '.$card->id;
+                                        echo '<hr>'; 
+                                    }
+                                }
                             }
                         }
 
