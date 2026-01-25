@@ -29,6 +29,7 @@ ccmakesthings
         </div>
         <div class="col-md-6">
             <h2>{{$card->name}}</h2>
+            <h4>{{$card->set->imagename}}-{{$card->set_number}}</h4>
             Set: <a href="/onepiece/set/{{$set->url}}/#{{$card->id}}">{{$set->name}}</a><br><br>
             Character: <a href="/onepiece/character/{{$card->character->id}}">{{$card->character->name}}</a><br><br>
             <hr>

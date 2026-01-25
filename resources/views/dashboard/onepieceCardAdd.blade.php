@@ -80,6 +80,14 @@
                   name="original_set_number"
                   value="0"
                 />
+            </div>
+            <div class="form-group">
+              <label for="tcgcsv-id">tcgcsv id</label>
+              <input
+                  type="text"
+                  name="tcgcsv_id"
+                  value="0"
+                />
             </div>                                      
             <button type="submit">
             Add
