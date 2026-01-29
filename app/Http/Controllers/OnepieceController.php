@@ -87,13 +87,12 @@ class OnepieceController extends Controller
      */
     public function pricechanges() {
         if ( !Auth::guest() ) {
-            $change = Onepieceusercard::where('user_id','=',Auth::user()->id)
-                    ->orderBy('tcg_price_difference','DESC')
-                    ->limit('50')
-                    ->pluck('onepiececard_id')
-                    ->toArray();
+            $cards = Onepiececard::leftJoin('onepieceusercards as u','u.onepiececard_id','=','onepiececards.id')
+                ->where('u.user_id','=',Auth::user()->id)
+                ->orderBy('u.tcg_price_difference','DESC')
+                ->limit('50')
+                ->get();
 
-            $cards = Onepiececard::whereIn('id',$change)->get();
         } else {
             // this should just be moved to a user dashboard type thing
             $cards = Onepiececard::where('id','=',1)->get();
