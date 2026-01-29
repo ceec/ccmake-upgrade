@@ -80,6 +80,29 @@ class OnepieceController extends Controller
         ->with('cards',$cards);
     }
 
+        /**
+     * Display X amount of cards with the biggest price gains
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pricechanges() {
+        if ( !Auth::guest() ) {
+            $change = Onepieceusercard::where('user_id','=',Auth::user()->id)
+                    ->orderBy('tcg_price_difference','DESC')
+                    ->limit('50')
+                    ->pluck('onepiececard_id')
+                    ->toArray();
+
+            $cards = Onepiececard::whereIn('id',$change)->get();
+        } else {
+            // this should just be moved to a user dashboard type thing
+            $cards = Onepiececard::where('id','=',1)->get();
+        }
+
+        return view('pages.onepieceHunt')
+        ->with('cards',$cards);
+    }
+
     /**
      * Trends - price trends of the needed cards in that set
      *

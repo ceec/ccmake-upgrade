@@ -65,6 +65,7 @@ Route::get('/onepiece/characters','App\Http\Controllers\OnepieceController@chara
 Route::get('/onepiece/character/{character}','App\Http\Controllers\OnepieceController@character');
 Route::get('/onepiece/trends/{set}','App\Http\Controllers\OnepieceController@priceTrends');
 Route::get('/onepiece/hunt','App\Http\Controllers\OnepieceController@hunt');
+Route::get('/onepiece/pricechanges','App\Http\Controllers\OnepieceController@pricechanges');
 
 // music
 Route::get('/music2','App\Http\Controllers\MusicController@music');
@@ -93,6 +94,7 @@ Route::get('/spotify','App\Http\Controllers\SpotifyController@getListenedSongs')
 Route::get('/onepiece/pricedata/{tcgid}','App\Http\Controllers\CardpriceController@onepiecePriceData');
 Route::get('/onepiece/addTcgcsvIds/{tcgid}','App\Http\Controllers\CardpriceController@onepieceAddTcgcsvId');
 Route::get('/onepiece/updateTcgplayerprices','App\Http\Controllers\CardpriceController@onepieceUpdateTcgPlayerprices');
+
 
 //lets do some pokedata!
 Route::get('/pokemon/addTcgcsvIds/{tcgid_set_id}','App\Http\Controllers\CardpriceController@pokemonAddTcgcsvId');
