@@ -91,7 +91,7 @@ class OnepieceController extends Controller
                 ->select('onepiececards.*')
                 ->where('u.user_id','=',Auth::user()->id)
                 ->orderBy('u.tcg_price_difference','DESC')
-                ->limit('1')
+                ->limit('50')
                 ->get();
         } else {
             // this should just be moved to a user dashboard type thing
