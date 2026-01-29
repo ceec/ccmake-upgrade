@@ -332,4 +332,32 @@ class CardpriceController extends Controller
     }
 
 
+    /**
+     * Update the price difference for the cards a user has
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function onepieceUpdateTcgPlayerprices() {
+        // loop through the user and find the difference from the price table
+
+        $usercards = Onepieceusercard::where('user_id','=',1)->get();
+
+        foreach ($usercards as $card) {
+            // find the price in the price table
+            $latestprice = Onepiececardprice::where('onepiececard_id','=',$card->onepiececard_id)->latest()->first()->price ?? NULL;
+
+            if (isset($latestprice)) {
+                // calculate
+                $change = $latestprice - $card->price;
+                // update it in the usercard table
+                $update = Onepieceusercard::find($card->id);
+                $update->tcg_price_difference = $change;
+                $update->save();
+            }
+
+
+        }
+
+    }
+
 }

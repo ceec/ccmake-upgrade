@@ -92,6 +92,7 @@ Route::get('/spotify','App\Http\Controllers\SpotifyController@getListenedSongs')
 // limiting to one piece first
 Route::get('/onepiece/pricedata/{tcgid}','App\Http\Controllers\CardpriceController@onepiecePriceData');
 Route::get('/onepiece/addTcgcsvIds/{tcgid}','App\Http\Controllers\CardpriceController@onepieceAddTcgcsvId');
+Route::get('/onepiece/updateTcgplayerprices','App\Http\Controllers\CardpriceController@onepieceUpdateTcgPlayerprices');
 
 //lets do some pokedata!
 Route::get('/pokemon/addTcgcsvIds/{tcgid_set_id}','App\Http\Controllers\CardpriceController@pokemonAddTcgcsvId');
