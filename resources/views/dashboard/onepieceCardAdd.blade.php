@@ -102,13 +102,14 @@
 <script>
 $(document).ready(function() {
   $('#charactername').on('input', function() {
-    console.log('here');
     // Get the pasted/typed value and trim whitespace
     var val = $(this).val().trim();
-
+    // Ignore things after a parens if there is one
+    const beforeParens = val.split(/(\()/g);
+    const name = beforeParens[0].trim().toLowerCase();
     // Find the option that matches the text 
     $('#character-id option').filter(function() {
-      return $(this).text().trim().toLowerCase() === val.toLowerCase();
+      return $(this).text().trim().toLowerCase() === name;
     }).prop('selected', true);
   });
 });
