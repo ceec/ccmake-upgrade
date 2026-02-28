@@ -183,6 +183,7 @@ class PokemonController extends Controller
         $b->user_id = $request->input('user_id');
         $b->pokemoncard_id = $request->input('pokemoncard_id');
         $b->price = 0.00;
+        $b->tcg_price_difference = 0.00;
         $b->source = '';
         $b->save();
 
