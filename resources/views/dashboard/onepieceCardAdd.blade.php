@@ -66,7 +66,7 @@
               <label for="content">Original Set</label>
               <select name="original_set_id">
                   <option value="0">This one</option>
-                @foreach ($sets as $id => $name)
+                @foreach ($originalsets as $id => $name)
                     <option value="{{ $id }}">
                         {{ $name }}
                     </option>
