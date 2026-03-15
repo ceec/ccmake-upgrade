@@ -229,7 +229,7 @@ class OnepieceController extends Controller
         $b->tcgcsv_id =  $request->input('tcgcsv_id');
         $b->save();
 
-        return redirect('/dashboard');          
+        return redirect('/dashboard/onepiececard/add');
     }
 
      /**
