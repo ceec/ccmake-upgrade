@@ -193,7 +193,7 @@ class OnepieceController extends Controller
         $originalSets = Onepieceset::where('shortname','LIKE','OP-%')
             ->orWhere('shortname','LIKE','ST-%')
             ->orWhere('shortname','LIKE','EB-%')
-            ->orWhere('shortname','LIKE','P-%')
+            ->orWhere('shortname','=','P')
             ->orWhere('shortname','LIKE','PRB-%')
             ->orderBy('shortname','ASC')->pluck('shortname','id');
         $characters = Onepiececharacter::orderBy('name','ASC')->pluck('name','id');
