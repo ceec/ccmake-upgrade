@@ -189,7 +189,11 @@ class OnepieceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function addCardDisplay() {
-        $sets = Onepieceset::orderBy('shortname','ASC')->pluck('shortname','id');
+        $sets = Onepieceset::where('shortname','LIKE','OP-%')
+                ->orWhere('shortname','LIKE','ST-%')
+                ->orWhere('shortname','LIKE','EB-%')
+                ->orWhere('shortname','LIKE','PRB-%')
+                ->orderBy('shortname','ASC')->pluck('shortname','id');
         $characters = Onepiececharacter::orderBy('name','ASC')->pluck('name','id');
         // last card
         $last = Onepiececard::orderBy('created_at','DESC')->pluck('set_number')->first();
