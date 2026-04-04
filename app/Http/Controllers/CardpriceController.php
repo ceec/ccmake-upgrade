@@ -199,7 +199,7 @@ class CardpriceController extends Controller
         // base set - https://tcgcsv.com/tcgplayer/3/604/products
         // Japanese is 85
         // English is 3
-        $url = 'https://tcgcsv.com/tcgplayer/85/'.$tcgcsv_set_id.'/products'; // 604 - base set 
+        $url = 'https://tcgcsv.com/tcgplayer/3/'.$tcgcsv_set_id.'/products'; // 604 - base set 
 
         try {
             $response = $client->request('GET', $url);
