@@ -267,6 +267,17 @@ class CardpriceController extends Controller
                         }
 
 
+                    } else {
+                        //Japanese vending machine cards have different data structure
+                        unset($product->extendedData);
+                        unset($product->presaleInfo);
+                        echo '<img src="'.$product->imageUrl.'">';
+                        echo '<pre>';
+                        print_r($product);
+                        echo '</pre>';        
+                        
+                        echo '<hr>';
+
                     }
                 }
 
