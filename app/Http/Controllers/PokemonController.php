@@ -102,7 +102,7 @@ class PokemonController extends Controller
         $b->set_number = $request->input('set_number');
         $b->pokemon_id = 0;
         $b->rarity_id = 0;
-        $b->tcgcsv_id = 0;
+        $b->tcgcsv_id =  $request->input('tcgcsv_id');
         $b->save();
 
         return redirect('/dashboard/pokemoncard/add');          
