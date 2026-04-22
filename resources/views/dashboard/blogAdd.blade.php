@@ -51,8 +51,7 @@
             </div>                            
             <div class="form-group">
               <label for="content">Content</label>
-              <textarea name="text" rows="10" cols="100">
-              </textarea>
+              <textarea name="text" rows="10" cols="100"></textarea>
             </div>                 
                                                                        
             <button type="submit">

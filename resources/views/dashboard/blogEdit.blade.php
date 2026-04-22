@@ -47,9 +47,7 @@
             </div>                  
             <div class="form-group">
               <label for="text">Text</label>
-              <textarea name="text" rows="10" cols="100">
-                {{$blog->text}}
-              </textarea>
+              <textarea name="text" rows="10" cols="100">{{$blog->text}}</textarea>
             </div>    
             <input
                   type="hidden"
