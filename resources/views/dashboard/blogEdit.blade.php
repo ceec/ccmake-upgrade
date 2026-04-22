@@ -25,7 +25,7 @@
               <input
                   type="text"
                   name="started_at"
-                  value={{$blog->started_at}}
+                  value="{{$blog->started_at}}"
                 />
             </div>   
             <div class="form-group">
@@ -33,7 +33,7 @@
               <input
                   type="text"
                   name="completed_at"
-                  value={{$blog->completed_at}}
+                  value="{{$blog->completed_at}}"
                 />
             </div>  
             <div class="form-group">
@@ -41,7 +41,8 @@
               <input
                   type="text"
                   name="name"
-                  value={{$blog->name}}
+                  size="60"
+                  value="{{$blog->name}}"
                 />
             </div>                  
             <div class="form-group">
@@ -53,7 +54,7 @@
             <input
                   type="hidden"
                   name="blog_id"
-                  value={{$blog->id}}
+                  value="{{$blog->id}}"
                 />  
                 <button type="submit">
             Edit
