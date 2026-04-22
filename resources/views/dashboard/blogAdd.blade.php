@@ -51,10 +51,8 @@
             </div>                            
             <div class="form-group">
               <label for="content">Content</label>
-                            <input
-                  type="textarea"
-                  name="text"
-                />
+              <textarea name="text" rows="10" cols="100">
+              </textarea>
             </div>                 
                                                                        
             <button type="submit">

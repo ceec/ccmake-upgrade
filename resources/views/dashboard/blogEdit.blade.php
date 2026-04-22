@@ -46,11 +46,9 @@
             </div>                  
             <div class="form-group">
               <label for="text">Text</label>
-              <input
-                  type="textarea"
-                  name="text"
-                  value={{$blog->text}}
-                />
+              <textarea name="text" rows="10" cols="100">
+                {{$blog->text}}
+              </textarea>
             </div>    
             <input
                   type="hidden"
