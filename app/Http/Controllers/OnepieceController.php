@@ -11,6 +11,7 @@ use App\Models\Onepiececardprice;
 use App\Models\Onepieceset;
 use App\Models\Onepieceusercard;
 use App\Models\Onepiececharacter;
+use App\Models\Onepiecerarity;
 
 class OnepieceController extends Controller
 {
@@ -182,6 +183,30 @@ class OnepieceController extends Controller
         ->with('set',$character)
         ->with('cards',$cards);
     }
+
+    // display all cards with this rarity
+    public function rarity($rarity_id) {
+        // ok figuring out cards I need
+        // have list of all the cards in the set, then have my list of cards in the set, so i can do one
+        // of those sql things thats like exclude
+        // so want all of pokmeoncards where set = set
+        $rarity = Onepiecerarity::where('id','=',$rarity_id)->first();
+
+        $cards = DB::table('onepiececards')
+        ->where('rarity_id','=',$rarity->id)
+        ->select('onepiececards.*','onepieceusercards.*','set.shortname as set_url',
+                    'set.imagename as set_imagename','set.url as set_full_name','onepiececards.id as onepiececardid',
+                    'original_set.shortname as original_set_url','original_set.imagename as original_set_imagename')
+        ->leftJoin('onepieceusercards', 'onepiececards.id', '=', 'onepieceusercards.onepiececard_id')
+        ->leftJoin('onepiecesets as set','onepiececards.set_id','=','set.id')
+        ->leftJoin('onepiecesets as original_set','onepiececards.originaL_set_id','=','original_set.id')
+        ->get();
+
+        return view('pages.onepieceRarity')
+        ->with('rarity',$rarity)
+        ->with('set',$rarity)
+        ->with('cards',$cards);
+    }    
 
     /**
      * Add card  UI
@@ -362,6 +387,7 @@ class OnepieceController extends Controller
         $up->original_set_id = $request->input('original_set_id');
         $up->original_set_number = $request->input('original_set_number');
         $up->tcgcsv_id =  $request->input('tcgcsv_id');
+        $up->rarity_id =  $request->input('rarity_id');
         $up->save();
    
         return redirect('/dashboard/onepiececard/edit/'.$card_id);       
@@ -526,5 +552,60 @@ class OnepieceController extends Controller
    
         return redirect('/dashboard/onepiececharacter/edit/'.$character_id);       
     } 
+
+
+    /**
+     * Add rarity  UI
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addRarityDisplay() {
+        return view('dashboard.onepieceRarityAdd');
+    }    
+    
+    /**
+     * Add one piece rarity
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function addRarity(Request $request) {
+
+        $this->validate($request, [
+            'name' => 'required',
+        
+        ]);
+
+        $b = new Onepiecerarity;
+        $b->name = $request->input('name');
+        $b->shortname = $request->input('shortname');
+        $b->save();
+
+        return redirect('/dashboard');          
+    }  
+
+    /**
+     * List rarities for eiting
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function listRarityDisplay() {
+        $rarities = Onepiecerarity::orderBy('created_at','DESC')->get();
+
+        return view('dashboard.onepieceRarityList')
+        ->with('rarities',$rarities);
+    }
+
+    /**
+     * UI for editing rarity
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function editRarityDisplay($rarity_id) {
+        $rarity = Onepiecerarity::find($rarity_id);
+
+        return view('dashboard.onepieceRarityEdit')
+        ->with('rarity',$rarity);
+    } 
+
 
 }

@@ -88,6 +88,14 @@
                   name="tcgcsv_id"
                   value="{{$card->tcgcsv_id}}"
                 />
+            </div>    
+            <div class="form-group">
+              <label for="original-set-number">Rarity</label>
+              <input
+                  type="text"
+                  name="rarity_id"
+                  value="{{$card->rarity_id}}"
+                />
             </div>         
             <input
                   type="hidden"

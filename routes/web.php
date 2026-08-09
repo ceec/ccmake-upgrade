@@ -66,6 +66,7 @@ Route::get('/onepiece/character/{character}','App\Http\Controllers\OnepieceContr
 Route::get('/onepiece/trends/{set}','App\Http\Controllers\OnepieceController@priceTrends');
 Route::get('/onepiece/hunt','App\Http\Controllers\OnepieceController@hunt');
 Route::get('/onepiece/pricechanges','App\Http\Controllers\OnepieceController@pricechanges');
+Route::get('/onepiece/rarity/{id}','App\Http\Controllers\OnepieceController@rarity');
 
 // music
 Route::get('/music2','App\Http\Controllers\MusicController@music');
@@ -146,6 +147,17 @@ Route::get('/dashboard/onepiececharacter/edit/{card_id}','App\Http\Controllers\O
 //posting
 Route::post('/add/onepiececharacter','App\Http\Controllers\OnepieceController@addCharacter', function () {})->middleware(['verified']);
 Route::post('/edit/onepiececharacter','App\Http\Controllers\OnepieceController@editCharacter', function () {})->middleware(['verified']);
+
+// One Piece Rarities
+Route::get('/dashboard/onepiecerarity/add','App\Http\Controllers\OnepieceController@addRarityDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/onepiecerarity/list','App\Http\Controllers\OnepieceController@listRarityDisplay', function () {})->middleware(['verified']);
+Route::get('/dashboard/onepiecerarity/edit/{card_id}','App\Http\Controllers\OnepieceController@editRarityDisplay', function () {})->middleware(['verified']);
+//posting
+Route::post('/add/onepiecerarity','App\Http\Controllers\OnepieceController@addRarity', function () {})->middleware(['verified']);
+Route::post('/edit/onepiecerarity','App\Http\Controllers\OnepieceController@editRarity', function () {})->middleware(['verified']);
+
+
+
 
 // One Piece User Cards
 Route::post('/add/onepieceusercard','App\Http\Controllers\OnepieceController@addUserCard', function () {})->middleware(['verified']);

@@ -47,7 +47,12 @@
                             <h2>One Piece Characters</h2>
                             <a href="/dashboard/onepiececharacter/add">Add New One Piece Character</a><br>
                             <a href="/dashboard/onepiececharacter/list">Edit One Piece Character</a><br>
-                        </div>                        
+                        </div>          
+                        <div class="col-md-4">
+                            <h2>One Piece Rarities</h2>
+                            <a href="/dashboard/onepiecerarity/add">Add New One Piece Rarity</a><br>
+                            <a href="/dashboard/onepiecerarity/list">Edit One Piece Rarity</a><br>
+                        </div>                  
                     </div>
                     <hr>
                     <div class="row">
