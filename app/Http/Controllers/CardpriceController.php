@@ -29,7 +29,11 @@ class CardpriceController extends Controller
         $url = 'https://tcgcsv.com/tcgplayer/68/'.$tcgcsv_id.'/prices';
 
         try {
-            $response = $client->request('GET', $url);
+            $response = $client->request('GET', $url, [
+                'headers' => [
+                    'User-Agent' => 'ccmakesthings.com (cc@battab.com)',
+                ],
+            ]);
             $statusCode = $response->getStatusCode();
 
             if ($statusCode === 200) {
@@ -76,7 +80,11 @@ class CardpriceController extends Controller
         $url = 'https://tcgcsv.com/tcgplayer/68/'.$tcgcsv_id.'/products'; // EB-01 memorial collection
 
         try {
-            $response = $client->request('GET', $url);
+            $response = $client->request('GET', $url, [
+                'headers' => [
+                    'User-Agent' => 'ccmakesthings.com (cc@battab.com)',
+                ],
+            ]);
             $statusCode = $response->getStatusCode();
 
             if ($statusCode === 200) {
@@ -202,7 +210,11 @@ class CardpriceController extends Controller
         $url = 'https://tcgcsv.com/tcgplayer/3/'.$tcgcsv_set_id.'/products'; // 604 - base set 
 
         try {
-            $response = $client->request('GET', $url);
+            $response = $client->request('GET', $url, [
+                'headers' => [
+                    'User-Agent' => 'ccmakesthings.com (cc@battab.com)',
+                ],
+            ]);
             $statusCode = $response->getStatusCode();
 
             if ($statusCode === 200) {
@@ -302,7 +314,11 @@ class CardpriceController extends Controller
         $url = 'https://tcgcsv.com/tcgplayer/3/'.$tcgcsv_id.'/prices';
 
         try {
-            $response = $client->request('GET', $url);
+            $response = $client->request('GET', $url, [
+                'headers' => [
+                    'User-Agent' => 'ccmakesthings.com (cc@battab.com)',
+                ],
+            ]);
             $statusCode = $response->getStatusCode();
 
             if ($statusCode === 200) {
