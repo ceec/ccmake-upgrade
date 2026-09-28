@@ -311,7 +311,14 @@ class CardpriceController extends Controller
     public function pokemonPriceData($tcgcsv_id){
         // get info on the set
         $client = new Client();
-        $url = 'https://tcgcsv.com/tcgplayer/3/'.$tcgcsv_id.'/prices';
+
+        //handle Japanese specific sets
+        if ($tcgcsv_id == '24206' || $tcgcsv_id == '24207' || $tcgcsv_id == '24208') {
+            $url = 'https://tcgcsv.com/tcgplayer/85/'.$tcgcsv_id.'/prices';
+        } else {
+            $url = 'https://tcgcsv.com/tcgplayer/3/'.$tcgcsv_id.'/prices';
+        }
+        
 
         try {
             $response = $client->request('GET', $url, [
