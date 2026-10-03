@@ -29,12 +29,11 @@ class PokemonController extends Controller
         // ->get();
 
         $cards = DB::table('pokemoncards')
-        ->where('set_id','=',$setinfo->id)
+        ->where('pokemoncards.set_id','=',$setinfo->id)
         ->select('pokemoncards.*','pokemonusercards.*','pokemoncards.id as pokemoncardid')
         ->leftJoin('pokemonusercards', 'pokemoncards.id', '=', 'pokemonusercards.pokemoncard_id')
+        ->orderByRaw('CAST(pokemoncards.set_number AS UNSIGNED), pokemoncards.set_number')
         ->get();
-
-
 
         return  view('pages.pokemonset')
         ->with('set',$setinfo)
